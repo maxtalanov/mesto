@@ -7,6 +7,16 @@
 @import url(../blocks/root/root.css);
 
 
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__btn-exit/form__btn-exit.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__profile/form__profile.css);
+@import url(../blocks/form/__name/form__name.css);
+@import url(../blocks/form/__status/form__status.css);
+@import url(../blocks/form/__btn/form__btn.css);
+@import url(../blocks/form/__btn-save/form__btn-save.css);
+
+
 /* Старт: Блок HEADER */
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
@@ -20,3 +30,6 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 /* Конец: блок footer */
+
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
