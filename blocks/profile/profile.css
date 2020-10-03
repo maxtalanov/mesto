@@ -1,0 +1,26 @@
+/*
+FLEX BOX
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+} */
+
+/* Grid layout */
+.profile {
+  display: grid;
+  max-width: 100%;
+  /* justify-content: space-between; */
+  grid-template-columns: 120px minmax(min-content, 1fr) 150px;
+  column-gap: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    align-self: center;
+    justify-self: center;
+    grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+    gap: 0;
+  }
+}

@@ -1,0 +1,18 @@
+/*
+FLEXBOX
+.profile__img-box {
+  margin-right: 30px;
+  align-self: flex-start;
+} */
+
+
+.profile__img-box {
+
+}
+
+@media screen and (max-width: 767px) {
+  .profile__img-box {
+    align-self: center;
+    justify-self: center;
+  }
+}

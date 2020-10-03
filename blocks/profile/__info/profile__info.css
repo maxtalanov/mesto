@@ -1,0 +1,22 @@
+/*
+FLEXBOX
+.profile__info {
+  margin: auto 0;
+} */
+
+/* GRID LAYOUT */
+.profile__info {
+  display: grid;
+  margin-top: 16px;
+  margin: 0;
+  column-gap: 17px;
+}
+
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    max-width: 100%;
+    gap: 0;
+    margin: 14px 0 0;
+  }
+}

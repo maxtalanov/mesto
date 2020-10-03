@@ -7,6 +7,18 @@
 @import url(../blocks/root/root.css);
 
 
+/* Старт: секция PROFILE */
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__img-box/profile__img-box.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__status/profile__status.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+/* Конец: секция PROFILE */
+
+
 /* Старт: Блок HEADER */
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
@@ -14,6 +26,8 @@
 
 
 /* место для main */
+@import url(../blocks/content/content.css);
+/* Конец: КОНТЕНТ */
 
 
 /* Старт: блок footer */
