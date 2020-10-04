@@ -21,3 +21,10 @@
   background: rgba(0, 0, 0, 0.8);
   cursor: pointer;
 }
+
+@media screen and (max-width: 767px) {
+  .form__btn-save {
+    max-width: 238px;
+    padding: 14px 0;
+  }
+}

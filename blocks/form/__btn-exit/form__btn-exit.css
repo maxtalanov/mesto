@@ -12,3 +12,11 @@
   margin: 0;
   padding: 24px;
 }
+
+@media screen and (max-width: 767px) {
+  .form__btn-exit {
+    background-size: 26px 26px;
+    top: -60px;
+    right: 0px;
+  }
+}

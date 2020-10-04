@@ -12,3 +12,9 @@
   margin: 0;
   padding: 0 0 13.26px 0;
 }
+
+@media screen and (max-width: 767px) {
+  .form__name {
+    max-width: 238px;
+  }
+}
