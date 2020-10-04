@@ -1,0 +1,11 @@
+.form__profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  /* width: 358px; */
+
+  margin: 54px 36px 0;
+  border: 0;
+  padding: 0;
+}

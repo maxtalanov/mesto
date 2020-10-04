@@ -1,0 +1,14 @@
+.form__btn-exit {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+
+  background-image: url(../../../images/form__btn-exit.svg);
+  background-size: 40.7px 40.7px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(45deg);
+
+  margin: 0;
+  padding: 24px;
+}
