@@ -1,8 +1,8 @@
 //Кнопки и модальное окно
 const popup = document.querySelector('.popup');
-const ButtonOpenPopup = document.querySelector('.profile__edit-button');
-const ButtonClosePopup = document.querySelector('.form__btn-exit');
-const ButtonSavePopup = document.querySelector('.form__btn-save');
+const buttonOpenPopup = document.querySelector('.profile__edit-button');
+const buttonClosePopup = document.querySelector('.form__btn-exit');
+const buttonSavePopup = document.querySelector('.form__btn-save');
 
 //Фрма
 const form = document.querySelector('.form');
@@ -14,17 +14,16 @@ let name = document.querySelector('.profile__name');
 let status = document.querySelector('.profile__status');
 
 //открытие закрытие попапа
-function OpenPopuo() {
-  const PopupToggle = () => {
+function popupOpenExit() {
+  const popupToggle = () => {
     popup.classList.toggle('popup_opened')
   }
 
-  ButtonOpenPopup.addEventListener('click', PopupToggle);
-  ButtonClosePopup.addEventListener('click', PopupToggle);
-  ButtonSavePopup.addEventListener('click', PopupToggle);
+  buttonOpenPopup.addEventListener('click', popupToggle);
+  buttonClosePopup.addEventListener('click', popupToggle);
+  buttonSavePopup.addEventListener('click', popupToggle);
 }
-
-OpenPopuo();
+popupOpenExit();
 
 // вставка дданных в попап
 function addPopup() {
