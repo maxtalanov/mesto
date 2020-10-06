@@ -2,17 +2,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  max-width: calc(100% - 199px - 199px);
+  max-width: 882px;
   min-height: 74px;
   margin: 45px auto 0;
   border-bottom: 1px solid #545454;
-}
-
-@media screen and (max-width: 1023px) {
-  .header {
-    max-width: calc(100% - 80px - 80px);
-    margin-top: 34px;
-  }
 }
 
 @media screen and (max-width: 767px) {

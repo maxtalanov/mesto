@@ -1,15 +1,10 @@
 .photo-card {
   display: grid;
-  grid-template-columns: repeat(3, minmax(min-content, max-content));
-  grid-template-rows: ;
-
-  gap: 21px 18px;
-
-  width: 100%;
   max-width: 882px;
 
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  gap: 18px 18px;
 
-  margin: 0;
-  margin-top: 51px; /* Позже перезаписать конструкцию в коротку */
+  margin: 51px auto 0;
   padding: 0;
 }
