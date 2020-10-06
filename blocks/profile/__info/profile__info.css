@@ -7,12 +7,15 @@ FLEXBOX
 /* GRID LAYOUT */
 .profile__info {
   display: grid;
+  align-self: center;
+  justify-self: start;
+  column-gap: 17px;
+
+
   margin-top: 16px;
   margin: 0;
   max-width: 336px;
-  column-gap: 17px;
-  align-self: center;
-  justify-self: start;
+
 }
 
 
