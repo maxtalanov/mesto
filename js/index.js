@@ -1,5 +1,3 @@
-console.log('louding js');
-
 //Кнопки и модальное окно
 const popup = document.querySelector('.popup');
 const ButtonOpenPopup = document.querySelector('.profile__edit-button');
