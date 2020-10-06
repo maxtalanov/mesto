@@ -3,17 +3,17 @@ console.log('louding js');
 //Кнопки и модальное окно
 const popup = document.querySelector('.popup');
 const ButtonOpenPopup = document.querySelector('.profile__edit-button');
-const ButtonSavePopup = document.querySelector('.form__btn-save');
 const ButtonClosePopup = document.querySelector('.form__btn-exit');
+const ButtonSavePopup = document.querySelector('.form__btn-save');
 
 //Фрма
-const formProfile = document.querySelector('.form__profile');
-const formName = formProfile.querySelector('.form__name');
-const formStatus = formProfile.querySelector('.form__status');
+const form = document.querySelector('.form');
+const formName = form.querySelector('.form__name');
+const formStatus = form.querySelector('.form__status');
 
 //Данные для формы
-const name = document.querySelector('.profile__name').textContent;
-const status = document.querySelector('.profile__status').textContent;
+let name = document.querySelector('.profile__name');
+let status = document.querySelector('.profile__status');
 
 //открытие закрытие попапа
 function OpenPopuo() {
@@ -23,15 +23,23 @@ function OpenPopuo() {
 
   ButtonOpenPopup.addEventListener('click', PopupToggle);
   ButtonClosePopup.addEventListener('click', PopupToggle);
-  ButtonSavePopup.addEventListener('click', PopupToggle); //Временная конструкция
+  ButtonSavePopup.addEventListener('click', PopupToggle);
 }
+
 OpenPopuo();
 
 // вставка дданных в попап
 function addPopup() {
-  formName.value = name;
-  formStatus.value = status;
+  formName.value = name.textContent;
+  formStatus.value = status.textContent;
 }
 addPopup();
 
+function formSubmitHandler(evt) {
 
+  evt.preventDefault();
+
+  name.textContent = formName.value;
+  status.textContent = formStatus.value;
+}
+form.addEventListener('submit', formSubmitHandler);
