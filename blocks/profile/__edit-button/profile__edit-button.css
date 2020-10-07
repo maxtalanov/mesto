@@ -25,8 +25,9 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 767px) {
-  .profile__edit-button:hover {
+@media screen and (max-width: 900px) {
+  .profile__edit-button {
+    margin-bottom: 19px;
     width: 12px;
     height: 12px;
   }
