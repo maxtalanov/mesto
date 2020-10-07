@@ -1,6 +1,6 @@
 .form {
+  position: relative;
   display: flex;
-  position: absolute;
   flex-direction: column;
   justify-content: start;
 
