@@ -13,8 +13,8 @@
 
   border-radius: 2px;
   border: 0;
-  padding: 16.66px 0 18.49px;
-  margin: 0;
+  padding: 17px 0 18px;
+  margin: 48px 36px 37px;
 }
 
 .form__btn-save:hover {
@@ -25,6 +25,7 @@
 @media screen and (max-width: 767px) {
   .form__btn-save {
     max-width: 238px;
+    margin: 45px 22px 25px;
     padding: 14px 0;
   }
 }
