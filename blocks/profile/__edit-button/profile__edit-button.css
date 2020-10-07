@@ -20,9 +20,8 @@
 }
 
 .profile__edit-button:hover {
-  border-radius: 0;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  background-image: url(../../../images/edit-button__on.svg);
+  opacity: 0.6;;
   cursor: pointer;
 }
 
@@ -31,9 +30,4 @@
     width: 12px;
     height: 12px;
   }
-}
-
-
-.profile__edit-button {
-
 }

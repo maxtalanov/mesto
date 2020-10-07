@@ -16,7 +16,7 @@
 
 .profile__add-button:hover {
   border: 2px solid rgba(255, 255, 255, 0.6);
-  background-image: url(../../../images/add-button__on.svg);
+  opacity: 0.6;
   cursor: pointer;
 }
 
