@@ -7,9 +7,9 @@
   justify-self: start;
   align-self: end;
 
-  max-width: 24px;
-  max-height: 24px;
-  margin: 0 0 16px 0;
+  width: 24px;
+  height: 24px;
+  margin: 0 0 13px 0;
   padding: 7px;
   border-radius: 0;
   border: 1px solid #fff;
@@ -28,8 +28,8 @@
 
 @media screen and (max-width: 767px) {
   .profile__edit-button:hover {
-    max-width: 12px;
-    max-height: 12px;
+    width: 12px;
+    height: 12px;
   }
 }
 
