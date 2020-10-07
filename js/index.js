@@ -14,18 +14,15 @@ let name = document.querySelector('.profile__name');
 let status = document.querySelector('.profile__status');
 
 //открытие закрытие попапа
-function popupOpenExit() {
-  const popupToggle = () => {
-    popup.classList.toggle('popup_opened')
-  }
-
-  buttonOpenPopup.addEventListener('click', popupToggle);
-  buttonClosePopup.addEventListener('click', popupToggle);
-  buttonSavePopup.addEventListener('click', popupToggle);
+function popupToggle() {
+  popup.classList.toggle('popup_opened');
 }
-popupOpenExit();
+buttonOpenPopup.addEventListener('click', popupToggle);
+buttonClosePopup.addEventListener('click', popupToggle);
+buttonSavePopup.addEventListener('click', popupToggle);
 
-// вставка дданных в попап
+
+//вставка дданных в попап
 function addPopup() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
