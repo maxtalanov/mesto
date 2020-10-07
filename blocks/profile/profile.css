@@ -11,9 +11,7 @@ FLEX BOX
 .profile {
   display: grid;
   max-width: 100%;
-  /* justify-content: space-between; */
   grid-template-columns: 120px minmax(min-content, 1fr) 150px;
-  grid-template-rows: repeat(3fr);
   column-gap: 30px;
 }
 

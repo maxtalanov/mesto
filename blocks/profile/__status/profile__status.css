@@ -4,12 +4,17 @@
   grid-row-start: 2;
   grid-row-end: 3;
 
-  margin: 0;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   color: #fff;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  margin: 0;
 }
 
 
