@@ -27,8 +27,9 @@ function addPopup() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
 }
-addPopup();
+buttonOpenPopup.addEventListener('click', addPopup);
 
+// Обработчик формы
 function formSubmitHandler(evt) {
 
   evt.preventDefault();
@@ -36,4 +37,6 @@ function formSubmitHandler(evt) {
   name.textContent = formName.value;
   status.textContent = formStatus.value;
 }
+
+
 form.addEventListener('submit', formSubmitHandler);
