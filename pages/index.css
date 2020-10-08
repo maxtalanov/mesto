@@ -5,7 +5,7 @@
 
 
 @import url(../blocks/root/root.css);
-
+@import url(../blocks/hover-opacity/hover-opacity.css);
 
 /* Старт: секция PROFILE */
 @import url(../blocks/profile/profile.css);
