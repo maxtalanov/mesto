@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/ico" href="images/favicon.ico">
   <link rel="stylesheet" href="./pages/index.css">
+  <script src="./js/index.js" defer></script>
   <title>Mesto</title>
 </head>
 <body class="root">
@@ -26,65 +27,6 @@
     </section>
 
     <section class="photo-card">
-      <figure class="card">
-        <img class="card__img" src="./images/card__img-1.png" alt="Исторический памятник в Карачаевке">
-        <figcaption class="card__bottom">
-          <div class="card__text">
-            <p class="card__title">Карачаевск</p>
-            <button class="card__btn-like hover-opacity" type="button"></button>
-          </div>
-        </figcaption>
-      </figure>
-
-      <figure class="card">
-        <img class="card__img" src="./images/card__img-2.png" alt="Расвет рядом у горы Эльбрус">
-        <figcaption class="card__bottom">
-          <div class="card__text">
-            <p class="card__title">Гора Эльбрус</p>
-            <button class="card__btn-like hover-opacity" type="button"></button>
-          </div>
-        </figcaption>
-      </figure>
-
-      <figure class="card">
-        <img class="card__img" src="./images/card__img-3.png" alt="Горы Домбая в окружении леса">
-        <figcaption class="card__bottom">
-          <div class="card__text">
-            <p class="card__title">Домбай</p>
-            <button class="card__btn-like hover-opacity" type="button"></button>
-          </div>
-        </figcaption>
-      </figure>
-
-      <figure class="card">
-        <img class="card__img" src="./images/card__img-3.png" alt="Горы Домбая в окружении леса">
-        <figcaption class="card__bottom">
-          <div class="card__text">
-            <p class="card__title">Домбай</p>
-            <button class="card__btn-like hover-opacity" type="button"></button>
-          </div>
-        </figcaption>
-      </figure>
-
-      <figure class="card">
-        <img class="card__img" src="./images/card__img-2.png" alt="Расвет рядом у горы Эльбрус">
-        <figcaption class="card__bottom">
-          <div class="card__text">
-            <p class="card__title">Гора Эльбру</p>
-            <button class="card__btn-like hover-opacity" type="button"></button>
-          </div>
-        </figcaption>
-      </figure>
-
-      <figure class="card">
-        <img class="card__img" src="./images/card__img-1.png" alt="Исторический памятник в Карачаевке">
-        <figcaption class="card__bottom">
-          <div class="card__text">
-            <p class="card__title">Карачаево-Черкессия</p>
-            <button class="card__btn-like hover-opacity" type="button"></button>
-          </div>
-        </figcaption>
-      </figure>
     </section>
   </main>
 
@@ -103,6 +45,17 @@
         <input class="form__btn-save" type="submit" value="Сохранить">
     </form>
   </section>
-  <script src="./js/index.js"></script>
+
+  <template class="template-card">
+    <figure class="card">
+      <img class="card__img" src="" alt="">
+      <figcaption class="card__bottom">
+        <div class="card__text">
+          <p class="card__title"></p>
+          <button class="card__btn-like hover-opacity" type="button"></button>
+        </div>
+      </figcaption>
+    </figure>
+  </template>
 </body>
 </html>
