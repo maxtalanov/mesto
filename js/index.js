@@ -31,8 +31,6 @@ const buttonOpenPopup = document.querySelector('.profile__edit-button');
 const buttonClosePopup = document.querySelector('.form__btn-exit');
 const buttonSavePopup = document.querySelector('.form__btn-save');
 
-// Шаблон карты
-const template = document.querySelector('.template-card');
 //Фрма
 const form = document.querySelector('.form');
 const formName = form.querySelector('.form__name');
@@ -42,36 +40,31 @@ const formStatus = form.querySelector('.form__status');
 let name = document.querySelector('.profile__name');
 let status = document.querySelector('.profile__status');
 
+// Шаблон карточек
+const templateCard = document.querySelector('.template-card');
 const photoCard = document.querySelector('.photo-card');
 
-// Шаблон  template времееный
+
 const renderTest = () => {
-  const item = initialCards.map(element => {
-    return `
-    <figure class="card">
-  const item = initialCards.map(element => {
-      <img class="card__img" src="${element.link}" alt="">
-      <figcaption class="card__bottom">
-        <div class="card__text">
-          <p class="card__title">${element.name}</p>
-          <button class="card__btn-like hover-opacity" type="button"></button>
-        </div>
-      </figcaption>
-    </figure>`;
-  }).join('');
+  const item = initialCards.map(element => getItems(element));
 
-  photoCard.insertAdjacentHTML("afterbegin", item);
-}
-renderTest();
+  photoCard.append(...item);
+};
 
-const getItem = (data) => {
 
-}
+const getItems = (data) => {
+  const card = templateCard.content.cloneNode(true);
+  card.querySelector('.card__title').innerText = data.name;
+  card.querySelector('.card__img').src = data.link;
+  card.querySelector('.card__img').alt = data.name;
+
+  return card;
+};
 
 //открытие закрытие попапа
 function popupToggle() {
   popup.classList.toggle('popup_opened');
-}
+};
 buttonOpenPopup.addEventListener('click', popupToggle);
 buttonClosePopup.addEventListener('click', popupToggle);
 buttonSavePopup.addEventListener('click', popupToggle);
@@ -81,7 +74,7 @@ buttonSavePopup.addEventListener('click', popupToggle);
 function addPopup() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
-}
+};
 buttonOpenPopup.addEventListener('click', addPopup);
 
 // Обработчик формы
@@ -91,5 +84,7 @@ function formSubmitHandler(evt) {
 
   name.textContent = formName.value;
   status.textContent = formStatus.value;
-}
+};
 form.addEventListener('submit', formSubmitHandler);
+
+renderTest();
