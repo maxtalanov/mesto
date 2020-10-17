@@ -1,4 +1,31 @@
-//Кнопки и модальное окно
+const initialCards = [
+  {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+// Кнопки и модальное окно
 const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupCard = document.querySelector('.popup_type_card');
@@ -8,6 +35,7 @@ const buttonOpenPopup = document.querySelector('.profile__edit-button');
 const buttonClosePopup = document.querySelector('.form__btn-exit');
 const buttonSavePopup = document.querySelector('.form__btn-save');
 const buttonOpenPopupCard = document.querySelector('.profile__add-button');
+
 //Фрма
 const form = document.querySelector('.form');
 const formName = form.querySelector('.form__name');
@@ -21,18 +49,29 @@ const status = document.querySelector('.profile__status');
 const templateCard = document.querySelector('.template-card');
 const photoCard = document.querySelector('.photo-card');
 
-// buttonClosePopup.addEventListener('click', () => popupToggle(popupCard));
-// buttonClosePopup.addEventListener('click', [popupProfile, popupCard, popupImg].forEach = (element) => (element.classList.remove('popup_opened'));
-//Логика делаем масив из констант. По клику на кнопку у элемента из масива должен быть удален class popup_opened;
-// buttonSavePopup.addEventListener('click', popupToggle);
-//вставка дданных в попап
+
+const renderTest = () => {
+  const item = initialCards.map(element => getItems(element));
+
+  photoCard.append(...item);
+};
+
+
+const getItems = (data) => {
+  const card = templateCard.content.cloneNode(true);
+  card.querySelector('.card__title').innerText = data.name;
+  card.querySelector('.card__img').src = data.link;
+  card.querySelector('.card__img').alt = data.name;
+
+  return card;
+};
 
 function addPopup() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
 }
 
-//открытие закрытие попапа
+//функцияЖ открытие закрытие попапа
 function popupToggle(p) {
   p.classList.toggle('popup_opened');
 }
@@ -59,8 +98,5 @@ buttonSavePopup.addEventListener('click', (e) => {
   popupToggle(popup);
 });
 
-
 form.addEventListener('submit', formSubmitHandler);
-
-
-
+renderTest();
