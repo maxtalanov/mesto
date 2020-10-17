@@ -7,6 +7,7 @@
 @import url(../blocks/root/root.css);
 @import url(../blocks/hover-opacity/hover-opacity.css);
 
+
 /* Старт: секция PROFILE */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__img-box/profile__img-box.css);
