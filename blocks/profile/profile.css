@@ -1,13 +1,3 @@
-/*
-FLEX BOX
-.profile {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-} */
-
-/* Grid layout */
 .profile {
   display: grid;
   max-width: 100%;

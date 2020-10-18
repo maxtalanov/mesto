@@ -26,16 +26,17 @@ const initialCards = [
 ];
 
 // Кнопки и модальное окно
-const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_type_profile');
-const popupCard = document.querySelector('.popup_type_card');
-const buttonClosePopupCard = popupCard.querySelector('.form__btn-exit')
-const popupImg = document.querySelector('.popup_type_img');
+const btnOpenPopupProfile = document.querySelector('.profile__edit-button');
+const btnExitPopupProfile = popupProfile.querySelector('.form__btn-exit');
+const btnSavePopupProfile = popupProfile.querySelector('.form__btn-save');
 
-const buttonOpenPopup = document.querySelector('.profile__edit-button');
-const buttonClosePopup = document.querySelector('.form__btn-exit');
-const buttonSavePopup = document.querySelector('.form__btn-save');
-const buttonOpenPopupCard = document.querySelector('.profile__add-button');
+const popupCard = document.querySelector('.popup_type_card');
+const btnOpenPopupCard = document.querySelector('.profile__add-button');
+const btnExitPopupCard = popupCard.querySelector('.form__btn-exit');
+const btnSavePopupCard = popupCard.querySelector('.form__btn-save');
+
+
 
 //Фрма
 const form = document.querySelector('.form');
@@ -85,30 +86,35 @@ function formSubmitHandler(evt) {
   status.textContent = formStatus.value;
 }
 
-buttonOpenPopup.addEventListener('click', () => {
+btnOpenPopupProfile.addEventListener('click', () => {
   console.log(1);
-  popupToggle(popup);
+  popupToggle(popupProfile);
   addPopup();
 });
 
-buttonClosePopup.addEventListener('click', () => {
+btnExitPopupProfile.addEventListener('click', () => {
   console.log(2);
-  popupToggle(popup);
+  popupToggle(popupProfile);
 });
 
-buttonSavePopup.addEventListener('click', (e) => {
+btnSavePopupProfile.addEventListener('click', (e) => {
   console.log(3);
   formSubmitHandler(e);
-  popupToggle(popup);
+  popupToggle(popupProfile);
 });
 
-buttonOpenPopupCard.addEventListener('click', () => {
+btnOpenPopupCard.addEventListener('click', () => {
   console.log(4);
   popupToggle(popupCard);
 });
 
-buttonClosePopupCard.addEventListener('click', () => {
+btnExitPopupCard.addEventListener('click', () => {
   console.log(5);
+  popupToggle(popupCard);
+});
+
+btnSavePopupCard.addEventListener('click', () => {
+  console.log(6);
   popupToggle(popupCard);
 });
 
