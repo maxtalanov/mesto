@@ -1,4 +1,4 @@
-.form__profile {
+.form__set {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -11,8 +11,8 @@
 }
 
 @media screen and (max-width: 767px) {
-  .form__profile {
-    max-width: 238px;
-    margin: 75px 22px 0;
+  .form__set{
+  max-width: 238px;
+  margin: 75px 22px 0;
   }
 }

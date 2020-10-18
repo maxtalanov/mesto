@@ -23,13 +23,11 @@
 
 
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__btn-exit/form__btn-exit.css);
 @import url(../blocks/form/__title/form__title.css);
-@import url(../blocks/form/__profile/form__profile.css);
-@import url(../blocks/form/__name/form__name.css);
-@import url(../blocks/form/__status/form__status.css);
-@import url(../blocks/form/__btn-save/form__btn-save.css);
-
+@import url(../blocks/form/__set/form__set.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__btn-exit/form__btn-exit.css);
+@import url(../blocks/form/__btn-input/form__btn-input.css);
 
 
 /* Старт: секция PHOTO-CARD */

@@ -1,4 +1,4 @@
-.form__btn-save {
+.form__btn-input {
   width: 358px;
 
   font-style: normal;
@@ -16,14 +16,14 @@
   margin: 48px 36px 37px;
 }
 
-.form__btn-save:hover {
+.form__btn-input:hover {
   background: rgba(0, 0, 0, 0.8);
   cursor: pointer;
   transition: linear 0.4s;
 }
 
 @media screen and (max-width: 767px) {
-  .form__btn-save {
+  .form__btn-input {
     max-width: 238px;
     margin: 45px 22px 25px;
     padding: 14px 0;

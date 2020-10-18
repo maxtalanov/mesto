@@ -34,7 +34,7 @@ const btnSavePopupProfile = popupProfile.querySelector('.form__btn-save');
 const popupCard = document.querySelector('.popup_type_card');
 const btnOpenPopupCard = document.querySelector('.profile__add-button');
 const btnExitPopupCard = popupCard.querySelector('.form__btn-exit');
-const btnSavePopupCard = popupCard.querySelector('.form__btn-save');
+const btnSavePopupCard = popupCard.querySelector('.form__btn-create');
 
 
 
