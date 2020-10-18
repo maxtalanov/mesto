@@ -19,6 +19,8 @@
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 /* Конец: секция PROFILE */
 
+@import url(../blocks/trash/trash.css);
+
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__btn-exit/form__btn-exit.css);
