@@ -52,12 +52,16 @@ const templateCard = document.querySelector('.template-card');
 const photoCard = document.querySelector('.photo-card');
 
 
-const renderTest = () => {
+const renderCard = () => {
   const item = initialCards.map(element => getItems(element));
 
   photoCard.append(...item);
 };
 
+
+const handlerRemove = (event) => {
+  event.target.closest('.card').remove();
+};
 
 const getItems = (data) => {
   const card = templateCard.content.cloneNode(true);
@@ -65,18 +69,21 @@ const getItems = (data) => {
   card.querySelector('.card__img').src = data.link;
   card.querySelector('.card__img').alt = data.name;
 
+  const btnRemove = card.querySelector('.trash');
+  btnRemove.addEventListener('click', handlerRemove);
+
   return card;
 };
 
 function addPopup() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
-}
+};
 
 //функцияЖ открытие закрытие попапа
 function popupToggle(p) {
   p.classList.toggle('popup_opened');
-}
+};
 
 // Обработчик формы
 function formSubmitHandler(evt) {
@@ -84,7 +91,7 @@ function formSubmitHandler(evt) {
 
   name.textContent = formName.value;
   status.textContent = formStatus.value;
-}
+};
 
 btnOpenPopupProfile.addEventListener('click', () => {
   console.log(1);
@@ -119,4 +126,4 @@ btnSavePopupCard.addEventListener('click', () => {
 });
 
 form.addEventListener('submit', formSubmitHandler);
-renderTest();
+renderCard();
