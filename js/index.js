@@ -34,14 +34,17 @@ const btnSavePopupProfile = popupProfile.querySelector('.form__btn-save');
 const popupCard = document.querySelector('.popup_type_card');
 const btnOpenPopupCard = document.querySelector('.profile__add-button');
 const btnExitPopupCard = popupCard.querySelector('.form__btn-exit');
-const btnSavePopupCard = popupCard.querySelector('.form__btn-create');
+const btnCreatePopupCard = popupCard.querySelector('.form__btn-create');
 
-
-
-//Фрма
+//Фрма для профайла
 const form = document.querySelector('.form');
 const formName = form.querySelector('.form__name');
 const formStatus = form.querySelector('.form__status');
+
+// Форма для card
+const formCard = document.querySelector('.form-card');
+const inputName = formCard.querySelector('.form__in-name');
+const inputLink = formCard.querySelector('.form__in-link');
 
 //Данные для формы
 const name = document.querySelector('.profile__name');
@@ -51,19 +54,32 @@ const status = document.querySelector('.profile__status');
 const templateCard = document.querySelector('.template-card');
 const photoCard = document.querySelector('.photo-card');
 
-
 const renderCard = () => {
   const item = initialCards.map(element => getItems(element));
 
   photoCard.append(...item);
 };
 
+const addHandlers = () => {
+
+  btnCreatePopupCard.addEventListener('click', () => {
+    const items = getItems({
+          name: inputName.value,
+          link: inputLink.value
+      });
+      photoCard.prepend(items);
+
+      inputName.value = '';
+      inputLink.value = '';
+  });
+};
 
 const handlerRemove = (event) => {
   event.target.closest('.card').remove();
 };
 
 const getItems = (data) => {
+
   const card = templateCard.content.cloneNode(true);
   card.querySelector('.card__title').innerText = data.name;
   card.querySelector('.card__img').src = data.link;
@@ -120,10 +136,11 @@ btnExitPopupCard.addEventListener('click', () => {
   popupToggle(popupCard);
 });
 
-btnSavePopupCard.addEventListener('click', () => {
+btnCreatePopupCard.addEventListener('click', () => {
   console.log(6);
   popupToggle(popupCard);
 });
 
 form.addEventListener('submit', formSubmitHandler);
 renderCard();
+addHandlers();
