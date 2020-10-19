@@ -74,8 +74,13 @@ const addHandlers = () => {
   });
 };
 
-const handlerRemove = (event) => {
-  event.target.closest('.card').remove();
+const hendlerLike = (evt) => {
+    evt.target.classList.toggle('card__btn-like_active');
+};
+
+
+const handlerRemove = (evt) => {
+  evt.target.closest('.card').remove();
 };
 
 const getItems = (data) => {
@@ -86,20 +91,22 @@ const getItems = (data) => {
   card.querySelector('.card__img').alt = data.name;
 
   const btnRemove = card.querySelector('.trash');
+  const btnLike = card.querySelector('.card__btn-like')
   btnRemove.addEventListener('click', handlerRemove);
+  btnLike.addEventListener('click', hendlerLike);
 
   return card;
-};
+}
 
 function addPopup() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
-};
+}
 
 //функцияЖ открытие закрытие попапа
 function popupToggle(p) {
   p.classList.toggle('popup_opened');
-};
+}
 
 // Обработчик формы
 function formSubmitHandler(evt) {
@@ -107,7 +114,7 @@ function formSubmitHandler(evt) {
 
   name.textContent = formName.value;
   status.textContent = formStatus.value;
-};
+}
 
 btnOpenPopupProfile.addEventListener('click', () => {
   console.log(1);
