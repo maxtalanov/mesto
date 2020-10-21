@@ -1,0 +1,101 @@
+diff --git a/index.html b/index.html
+index 1c7d593..1b0a240 100644
+--- a/index.html
++++ b/index.html
+@@ -57,9 +57,17 @@
+     </form>
+   </section>
+ 
+-  <!-- <section class="popup popup_type_img">
+-
+-  </section> -->
++  <section class="popup popup_type_img">
++    <figure class="card">
++      <button class="form__btn-exit hover-opacity" type="reset"></button>
++      <img class="card__img" src="" alt="">
++      <figcaption class="card__bottom">
++        <div class="card__text">
++          <p class="card__title"></p>
++        </div>
++      </figcaption>
++    </figure>
++  </section>
+ 
+   <template class="template-card">
+     <figure class="card">
+diff --git a/js/index.js b/js/index.js
+index f780958..02e82b3 100644
+--- a/js/index.js
++++ b/js/index.js
+@@ -1,27 +1,26 @@
+-const initialCards = [
+-  {
+-      name: 'Архыз',
+-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
++const initialCards = [{
++    name: 'Архыз',
++    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+   },
+   {
+-      name: 'Челябинская область',
+-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
++    name: 'Челябинская область',
++    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+   },
+   {
+-      name: 'Иваново',
+-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
++    name: 'Иваново',
++    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+   },
+   {
+-      name: 'Камчатка',
+-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
++    name: 'Камчатка',
++    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+   },
+   {
+-      name: 'Холмогорский район',
+-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
++    name: 'Холмогорский район',
++    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+   },
+   {
+-      name: 'Байкал',
+-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
++    name: 'Байкал',
++    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+   }
+ ];
+ 
+@@ -36,7 +35,7 @@ const btnOpenPopupCard = document.querySelector('.profile__add-button');
+ const btnExitPopupCard = popupCard.querySelector('.form__btn-exit');
+ const btnSavePopupCard = popupCard.querySelector('.form__btn-save');
+ 
+-
++const popupImg = document.querySelector('.popup_type_img');
+ 
+ //Фрма
+ const form = document.querySelector('.form');
+@@ -64,6 +63,15 @@ const getItems = (data) => {
+   card.querySelector('.card__title').innerText = data.name;
+   card.querySelector('.card__img').src = data.link;
+   card.querySelector('.card__img').alt = data.name;
++  card.querySelector('.card__img').addEventListener('click', () => {
++    popupImg.querySelector('.card__img').src = data.link;
++    popupImg.querySelector('.card__img').alt = data.name;
++    popupImg.querySelector('.card__title').innerText = data.name;
++    popupImg.querySelector('.form__btn-exit').onclick = () => {
++      popupToggle(popupImg);
++    }
++    popupToggle(popupImg);
++  })
+ 
+   return card;
+ };
+@@ -119,4 +127,5 @@ btnSavePopupCard.addEventListener('click', () => {
+ });
+ 
+ form.addEventListener('submit', formSubmitHandler);
++
+ renderTest();
