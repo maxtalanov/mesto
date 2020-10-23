@@ -79,15 +79,14 @@ const addHandlers = () => {
   });
 };
 
-// const hendlerOpenImg = () => {
-//   card.querySelector('.card__img').addEventListener('click', () => {
-//   popupImg.querySelector('.show-img__img').src = data.link;
-//   popupImg.querySelector('.show-img__img').alt = data.name;
-//   popupImg.querySelector('show-img__text').innerText = data.name;
-//   popupToggle(popupImg);
-//   })};
+const hendlerOpenImg = (data) => {
+  imgEl.src = data.link;
+  imgEl.alt = data.name;
+  textEl.textContent = data.name;
+  togglePopup(popupImg);
+  };
 
-const hendlerLike = (evt) => {
+const handlerLike = (evt) => {
   evt.target.classList.toggle('card__btn-like_active');
 };
 
@@ -98,23 +97,17 @@ const handlerRemove = (evt) => {
 
 const getItems = (data) => {
   const card = templateCard.content.cloneNode(true);
-  card.querySelector('.card__title').innerText = data.name;
-  card.querySelector('.card__img').src = data.link;
-  card.querySelector('.card__img').alt = data.name;
+  const cardImages = card.querySelector('.card__img');
 
-  card.querySelector('.card__img').addEventListener('click', () => {
-    popupImg.querySelector('.show-img__img').src = data.link;
-    popupImg.querySelector('.show-img__img').alt = data.name;
-    popupImg.querySelector('.show-img__text').innerText = data.name;
-    popupToggle(popupImg);
-  })
+  card.querySelector('.card__title').textContent = data.name;
+  cardImages.src = data.link;
+  cardImages.alt = data.name;
 
-  // const btnImgOpen = card.querySelector('.card__img');
   const btnRemove = card.querySelector('.trash');
   const btnLike = card.querySelector('.card__btn-like');
-  // btnImgOpen.addEventListener('click', hendlerOpenImg);
   btnRemove.addEventListener('click', handlerRemove);
-  btnLike.addEventListener('click', hendlerLike);
+  btnLike.addEventListener('click', handlerLike);
+  cardImages.addEventListener('click', () => hendlerOpenImg(data));
 
   return card;
 }
@@ -125,12 +118,12 @@ function addPopup() {
 }
 
 //функция открытие закрытие попапа
-function popupToggle(p) {
+function togglePopup(p) {
   p.classList.toggle('popup_opened');
 }
 
 // Обработчик формы
-function formSubmitHandler(evt) {
+function handlerFormSubmit(evt) {
   evt.preventDefault();
 
   name.textContent = formName.value;
@@ -138,25 +131,25 @@ function formSubmitHandler(evt) {
 }
 
 btnOpenPopupProfile.addEventListener('click', () => {
-  popupToggle(popupProfile);
+  togglePopup(popupProfile);
   addPopup();
 });
 
 btnExitPopupProfile.addEventListener('click', () => {
-  popupToggle(popupProfile);
+  togglePopup(popupProfile);
 });
 
 btnSavePopupProfile.addEventListener('click', (e) => {
-  formSubmitHandler(e);
-  popupToggle(popupProfile);
+  handlerFormSubmit(e);
+  togglePopup(popupProfile);
 });
 
 btnOpenPopupCard.addEventListener('click', () => {
-  popupToggle(popupCard);
+  togglePopup(popupCard);
 });
 
 btnExitPopupCard.addEventListener('click', () => {
-  popupToggle(popupCard);
+  togglePopup(popupCard);
 });
 
 btnCreatePopupCard.addEventListener('click', () => {
@@ -164,9 +157,9 @@ btnCreatePopupCard.addEventListener('click', () => {
 });
 
 btnExitPopupImg.addEventListener('click', () => {
-  popupToggle(popupImg);
+  togglePopup(popupImg);
 })
 
-form.addEventListener('submit', formSubmitHandler);
+form.addEventListener('submit', handlerFormSubmit);
 renderCard();
 addHandlers();
