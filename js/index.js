@@ -122,6 +122,9 @@ function togglePopup(p) {
   p.classList.toggle('popup_opened');
 }
 
+function resetPopup() {
+  form.reset();
+}
 // Обработчик формы
 function handlerFormSubmit(evt) {
   evt.preventDefault();
@@ -137,6 +140,7 @@ btnOpenPopupProfile.addEventListener('click', () => {
 
 btnExitPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
+  resetPopup();
 });
 
 btnSavePopupProfile.addEventListener('click', (e) => {
@@ -150,6 +154,7 @@ btnOpenPopupCard.addEventListener('click', () => {
 
 btnExitPopupCard.addEventListener('click', () => {
   togglePopup(popupCard);
+  resetPopup();
 });
 
 btnCreatePopupCard.addEventListener('click', () => {
