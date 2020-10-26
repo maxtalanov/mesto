@@ -4,18 +4,20 @@ const renderCard = () => {
   photoCard.append(...item);
 };
 
-const addHandlers = () => {
-  btnCreatePopupCard.addEventListener('click', () => {
-    const items = getItems({
-      name: inputName.value,
-      link: inputLink.value
-    });
-    photoCard.prepend(items);
+const addHandlers = (e) => {
+  e.preventDefault();
 
-    inputName.value = '';
-    inputLink.value = '';
+  const items = getItems({
+    name: inputName.value,
+    link: inputLink.value
   });
+  photoCard.prepend(items);
+  togglePopup(popupCard);
+
+  resetPopup(formCard);
 };
+
+formCard.addEventListener('submit', addHandlers);
 
 const hendlerOpenImg = (data) => {
   imgEl.src = data.link;
@@ -60,8 +62,9 @@ function togglePopup(p) {
   p.classList.toggle('popup_opened');
 }
 
-function resetPopup() {
-  form.reset();
+// функция сброса форм
+function resetPopup(f) {
+  f.reset();
 }
 // Обработчик формы
 function handlerFormSubmit(evt) {
@@ -78,7 +81,7 @@ btnOpenPopupProfile.addEventListener('click', () => {
 
 btnExitPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
-  resetPopup();
+  resetPopup(form);
 });
 
 btnSavePopupProfile.addEventListener('click', (e) => {
@@ -92,11 +95,7 @@ btnOpenPopupCard.addEventListener('click', () => {
 
 btnExitPopupCard.addEventListener('click', () => {
   togglePopup(popupCard);
-  resetPopup();
-});
-
-btnCreatePopupCard.addEventListener('click', () => {
-  popupToggle(popupCard);
+  resetPopup(formCard);
 });
 
 btnExitPopupImg.addEventListener('click', () => {
@@ -105,4 +104,3 @@ btnExitPopupImg.addEventListener('click', () => {
 
 form.addEventListener('submit', handlerFormSubmit);
 renderCard();
-addHandlers();
