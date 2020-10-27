@@ -1,3 +1,4 @@
+//Клонирует 6ть карточек из коробки
 const renderCard = () => {
   const item = initialCards.map(element => getItems(element));
 
@@ -13,11 +14,9 @@ const addHandlers = (e) => {
   });
   photoCard.prepend(items);
   togglePopup(popupCard);
-
+  form.addEventListener('submit', handlerFormSubmit);
   resetPopup(formCard);
 };
-
-formCard.addEventListener('submit', addHandlers);
 
 const hendlerOpenImg = (data) => {
   imgEl.src = data.link;
@@ -102,5 +101,23 @@ btnExitPopupImg.addEventListener('click', () => {
   togglePopup(popupImg);
 })
 
+formCard.addEventListener('submit', addHandlers);
 form.addEventListener('submit', handlerFormSubmit);
 renderCard();
+
+// function modalVariant(el) {
+//   el.forEach(element => element);
+//   return element;
+// }
+// console.log(modalVariant(namePopup));
+
+//Закрытие popup ESC
+function closePopupESC(evt) {
+  const popupAction = document.querySelector('.popup_opened')
+  if (evt.key === 'Escape') {
+    togglePopup(popupAction);
+  }
+}
+
+// root.addEventListener('keydown',  closePopupESC);
+// root.removeEventListener('keydown',  closePopupESC);
