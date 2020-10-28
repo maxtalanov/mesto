@@ -59,8 +59,12 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 /* Конец: блок footer */
 
+
+/* Старт: popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/_type_img/popup_type_img.css);
+/* Конец: popup */
 
 @import url(../blocks/show-img/show-img.css);
 @import url(../blocks/show-img/__btn-exit/show-img__btn-exit.css);
@@ -68,9 +72,5 @@
 @import url(../blocks/show-img/__text-box/show-img__text-box.css);
 @import url(../blocks/show-img/__text/show-img__text.css);
 
-/* @import url(../);
-@import url(../);
-@import url(../);
-@import url(../);
-@import url(../);
-@import url(../); */
+
+/* @import url(../); */
