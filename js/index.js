@@ -1,3 +1,8 @@
+
+const popup = document.querySelector('.popup');
+const popupAction = document.querySelector('.popup_opened');
+// закрытие попуп спомощью
+
 //Клонирует 6ть карточек из коробки
 const renderCard = () => {
   const item = initialCards.map(element => getItems(element));
@@ -85,7 +90,7 @@ function closePopupESC(evt) {
   const popupAction = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
     togglePopup(popupAction);
-    root.removeEventListener('keydown',  closePopupESC);
+    popup.removeEventListener('keydown',  closePopupESC);
   }
 };
 
@@ -93,6 +98,7 @@ btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
   addPopup();
   root.addEventListener('keydown',  closePopupESC);
+  // popup.addEventListener('click', test);
 });
 
 btnExitPopupProfile.addEventListener('click', () => {
@@ -119,7 +125,7 @@ btnExitPopupCard.addEventListener('click', () => {
 
 btnExitPopupImg.addEventListener('click', () => {
   togglePopup(popupImg);
-  root.removeEventListener('keydown',  closePopupESC);
+  popup.removeEventListener('keydown',  closePopupESC);
 });
 
 formCard.addEventListener('submit', addHandlers);
@@ -127,15 +133,22 @@ form.addEventListener('submit', handlerFormSubmit);
 renderCard();
 
 
-const popup = document.querySelector('.popup');
-const popupAction = document.querySelectorAll('.popup_opened');
-// закрытие попуп спомощью
-popup.addEventListener('click', function (e) {
-  // const popupAction = document.querySelectorAll('.popup_opened')
-  // if (e.target === e.currentTarget) {
-  //   togglePopup(popupAction);
-  // }
+const testLayoutExitP = () => {
+  const popupList = (document.querySelectorAll('.popup'));
+  console.log(popupList);
+
+  popupList.forEach((popupElement) => {
+    popupElement.addEventListener('clik', test);
+  })
+};
+testLayoutExitP();
+
+function test (e) {
+  const popupAction = document.querySelectorAll('.popup_opened');
+  if (e.target === e.currentTarget) {
+    togglePopup(popupAction);
+  }
 
   console.log(e.target);
   console.log(e.currentTarget);
-});
+};

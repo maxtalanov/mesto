@@ -37,8 +37,8 @@
     <form class="form" action="#">
       <h2 class="form__title">Редактировать профиль</h2>
       <fieldset class="form__set form__profile">
-        <input class="form__input form__name" type="text" name="name" placeholder="Введите ваше имя и/или фамилию" required>
-        <input class="form__input form__status" type="text" name="status" placeholder="Введите ваш статус" required>
+        <input class="form__input form__name" type="text" name="name" placeholder="Введите ваше имя и/или фамилию" minlength="2" maxlength="40" required>
+        <input class="form__input form__status" type="text" name="status" placeholder="Введите ваш статус" minlength="2" maxlength="200" required>
       </fieldset>
       <button class="form__btn-exit hover-opacity" type="reset"></button>
       <input class="form__btn-input form__btn-save" type="submit" value="Сохранить">
@@ -49,8 +49,8 @@
     <form class="form form-card" action="#">
       <h2 class="form__title">Новое место</h2>
       <fieldset class="form__set">
-        <input class="form__input form__in-name" type="text" name="name" placeholder="Название" required>
-        <input class="form__input form__in-link" type="text" name="link" placeholder="Ссылка на картинку" required>
+        <input class="form__input form__in-name" type="text" name="name" placeholder="Название" minlength="2" maxlength="30" required>
+        <input class="form__input form__in-link" type="url" name="link" placeholder="Ссылка на картинку" required>
       </fieldset>
       <button class="form__btn-exit hover-opacity" type="reset"></button>
       <input class="form__btn-input form__btn-create" type="submit" value="Создать">
