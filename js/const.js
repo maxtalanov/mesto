@@ -25,6 +25,8 @@ const initialCards = [
   }
 ];
 
+const root = document.querySelector('.root');
+
 // Кнопки и модальное окно
 const popupProfile = document.querySelector('.popup_type_profile');
 const btnOpenPopupProfile = document.querySelector('.profile__edit-button');

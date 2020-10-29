@@ -1,3 +1,4 @@
+//Клонирует 6ть карточек из коробки
 const renderCard = () => {
   const item = initialCards.map(element => getItems(element));
 
@@ -12,18 +13,20 @@ const addHandlers = (e) => {
     link: inputLink.value
   });
   photoCard.prepend(items);
-  togglePopup(popupCard);
+  form.addEventListener('submit', handlerFormSubmit);
+  root.removeEventListener('keydown',  closePopupESC);
 
+  togglePopup(popupCard);
   resetPopup(formCard);
 };
-
-formCard.addEventListener('submit', addHandlers);
 
 const hendlerOpenImg = (data) => {
   imgEl.src = data.link;
   imgEl.alt = data.name;
   textEl.textContent = data.name;
+
   togglePopup(popupImg);
+  root.addEventListener('keydown',  closePopupESC);
   };
 
 const handlerLike = (evt) => {
@@ -66,21 +69,25 @@ function togglePopup(p) {
 function resetPopup(f) {
   f.reset();
 }
-// Обработчик формы
+// Обработчик формы Profail
 function handlerFormSubmit(evt) {
   evt.preventDefault();
 
   name.textContent = formName.value;
   status.textContent = formStatus.value;
+
+  root.removeEventListener('keydown',  closePopupESC);
 }
 
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
   addPopup();
+  root.addEventListener('keydown',  closePopupESC);
 });
 
 btnExitPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
+  root.removeEventListener('keydown',  closePopupESC);
   resetPopup(form);
 });
 
@@ -91,16 +98,38 @@ btnSavePopupProfile.addEventListener('click', (e) => {
 
 btnOpenPopupCard.addEventListener('click', () => {
   togglePopup(popupCard);
+  root.addEventListener('keydown',  closePopupESC);
 });
 
 btnExitPopupCard.addEventListener('click', () => {
   togglePopup(popupCard);
+  root.removeEventListener('keydown',  closePopupESC);
   resetPopup(formCard);
 });
 
 btnExitPopupImg.addEventListener('click', () => {
   togglePopup(popupImg);
+  root.removeEventListener('keydown',  closePopupESC);
 })
 
+formCard.addEventListener('submit', addHandlers);
 form.addEventListener('submit', handlerFormSubmit);
 renderCard();
+
+// function modalVariant(el) {
+//   el.forEach(element => element);
+//   return element;
+// }
+// console.log(modalVariant(namePopup));
+
+//Закрытие popup ESC
+function closePopupESC(evt) {
+  const popupAction = document.querySelector('.popup_opened')
+  if (evt.key === 'Escape') {
+    togglePopup(popupAction);
+    root.removeEventListener('keydown',  closePopupESC);
+  }
+}
+
+// root.addEventListener('keydown',  closePopupESC);
+// root.removeEventListener('keydown',  closePopupESC);
