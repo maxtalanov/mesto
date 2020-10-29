@@ -53,22 +53,23 @@ const getItems = (data) => {
   cardImages.addEventListener('click', () => hendlerOpenImg(data));
 
   return card;
-}
+};
 
 function addPopup() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
-}
+};
 
 //функция открытие закрытие попапа
 function togglePopup(p) {
   p.classList.toggle('popup_opened');
-}
+};
 
 // функция сброса форм
 function resetPopup(f) {
   f.reset();
-}
+};
+
 // Обработчик формы Profail
 function handlerFormSubmit(evt) {
   evt.preventDefault();
@@ -77,7 +78,16 @@ function handlerFormSubmit(evt) {
   status.textContent = formStatus.value;
 
   root.removeEventListener('keydown',  closePopupESC);
-}
+};
+
+//Закрытие popup ESC
+function closePopupESC(evt) {
+  const popupAction = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    togglePopup(popupAction);
+    root.removeEventListener('keydown',  closePopupESC);
+  }
+};
 
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
@@ -110,26 +120,22 @@ btnExitPopupCard.addEventListener('click', () => {
 btnExitPopupImg.addEventListener('click', () => {
   togglePopup(popupImg);
   root.removeEventListener('keydown',  closePopupESC);
-})
+});
 
 formCard.addEventListener('submit', addHandlers);
 form.addEventListener('submit', handlerFormSubmit);
 renderCard();
 
-// function modalVariant(el) {
-//   el.forEach(element => element);
-//   return element;
-// }
-// console.log(modalVariant(namePopup));
 
-//Закрытие popup ESC
-function closePopupESC(evt) {
-  const popupAction = document.querySelector('.popup_opened')
-  if (evt.key === 'Escape') {
-    togglePopup(popupAction);
-    root.removeEventListener('keydown',  closePopupESC);
-  }
-}
+const popup = document.querySelector('.popup');
+const popupAction = document.querySelectorAll('.popup_opened');
+// закрытие попуп спомощью
+popup.addEventListener('click', function (e) {
+  // const popupAction = document.querySelectorAll('.popup_opened')
+  // if (e.target === e.currentTarget) {
+  //   togglePopup(popupAction);
+  // }
 
-// root.addEventListener('keydown',  closePopupESC);
-// root.removeEventListener('keydown',  closePopupESC);
+  console.log(e.target);
+  console.log(e.currentTarget);
+});
