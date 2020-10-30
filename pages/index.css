@@ -21,14 +21,15 @@
 
 @import url(../blocks/trash/trash.css);
 
-
+/* Старт: блок FORM */
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__set/form__set.css);
 @import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__error-span/form__error-span.css);
 @import url(../blocks/form/__btn-exit/form__btn-exit.css);
 @import url(../blocks/form/__btn-input/form__btn-input.css);
-
+/* Конец: блок FORM */
 
 /* Старт: секция PHOTO-CARD */
 @import url(../blocks/photo-card/photo-card.css);
