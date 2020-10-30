@@ -94,6 +94,8 @@ function closePopupESC(evt) {
   }
 };
 
+
+// Контроль!
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
   addPopup();
@@ -133,22 +135,23 @@ form.addEventListener('submit', handlerFormSubmit);
 renderCard();
 
 
-const testLayoutExitP = () => {
-  const popupList = (document.querySelectorAll('.popup'));
-  console.log(popupList);
+// const testLayoutExitP = () => {
+//   const popupList = (document.querySelectorAll('.popup'));
+//   console.log(popupList);
 
-  popupList.forEach((popupElement) => {
-    popupElement.addEventListener('clik', test);
-  })
-};
-testLayoutExitP();
+//   popupList.forEach((popupElement) => {
+//     popupElement.addEventListener('clik', test);
+//     console.log(popupElement);
+//   })
+// };
+// testLayoutExitP();
 
-function test (e) {
-  const popupAction = document.querySelectorAll('.popup_opened');
-  if (e.target === e.currentTarget) {
-    togglePopup(popupAction);
-  }
+// function test (e) {
+//   const popupAction = document.querySelectorAll('.popup_opened');
+//   if (e.target === e.currentTarget) {
+//     togglePopup(popupAction);
+//   }
 
-  console.log(e.target);
-  console.log(e.currentTarget);
-};
+//   console.log(e.target);
+//   console.log(e.currentTarget);
+// };
