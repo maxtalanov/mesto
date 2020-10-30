@@ -140,18 +140,19 @@ const testLayoutExitP = () => {
   console.log(popupList);
 
   popupList.forEach((popupElement) => {
-    popupElement.addEventListener('clik', () => test(popupElement));
-    console.log(popupElement);
+    popupElement.addEventListener('click', () => test(popupElement));
+    // console.log(popupElement);
   })
 };
 testLayoutExitP();
 
-function test (e) {
-  const popupAction = document.querySelectorAll('.popup_opened');
+function test(e) {
+  const popupAction = document.querySelector('.popup_opened');
   if (e.target === e.currentTarget) {
     togglePopup(popupAction);
   }
 
-  console.log(e.target);
-  console.log(e.currentTarget);
+  console.log(popupAction);
+  // console.log(e.target);
+  // console.log(e.currentTarget);
 };
