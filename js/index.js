@@ -10,6 +10,7 @@ const renderCard = () => {
   photoCard.append(...item);
 };
 
+// Создание new карточкек
 const addHandlers = (e) => {
   e.preventDefault();
 
@@ -25,6 +26,7 @@ const addHandlers = (e) => {
   resetPopup(formCard);
 };
 
+// Открыть картинку
 const hendlerOpenImg = (data) => {
   imgEl.src = data.link;
   imgEl.alt = data.name;
@@ -34,15 +36,28 @@ const hendlerOpenImg = (data) => {
   root.addEventListener('keydown',  closePopupESC);
   };
 
+// Лайк карточке
 const handlerLike = (evt) => {
   evt.target.classList.toggle('card__btn-like_active');
 };
 
+//Закрыть попап по фону
+const exitPopupLayoutHandler = () => {
+  const popupList = (document.querySelectorAll('.popup'));
+  console.log(popupList);
 
+  popupList.forEach((popupElement) => {
+    popupElement.addEventListener('click', () => exitPopupLayout(popupElement));
+    // console.log(popupElement);
+  })
+};
+
+// Удалить карточку
 const handlerRemove = (evt) => {
   evt.target.closest('.card').remove();
 };
 
+//Карточки
 const getItems = (data) => {
   const card = templateCard.content.cloneNode(true);
   const cardImages = card.querySelector('.card__img');
@@ -59,6 +74,7 @@ const getItems = (data) => {
 
   return card;
 };
+
 
 function addPopup() {
   formName.value = name.textContent;
@@ -94,13 +110,18 @@ function closePopupESC(evt) {
   }
 };
 
+// Закрыть попуп
+function exitPopupLayout(e) {
+  const popupAction = document.querySelector('.popup_opened');
+  if (e.target === e.currentTarget) {
+    togglePopup(popupAction);
+  }
+};
 
-// Контроль!
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
   addPopup();
   root.addEventListener('keydown',  closePopupESC);
-  // popup.addEventListener('click', test);
 });
 
 btnExitPopupProfile.addEventListener('click', () => {
@@ -132,27 +153,11 @@ btnExitPopupImg.addEventListener('click', () => {
 
 formCard.addEventListener('submit', addHandlers);
 form.addEventListener('submit', handlerFormSubmit);
+exitPopupLayoutHandler();
 renderCard();
 
 
-const testLayoutExitP = () => {
-  const popupList = (document.querySelectorAll('.popup'));
-  console.log(popupList);
 
-  popupList.forEach((popupElement) => {
-    popupElement.addEventListener('click', () => test(popupElement));
-    // console.log(popupElement);
-  })
-};
-testLayoutExitP();
 
-function test(e) {
-  const popupAction = document.querySelector('.popup_opened');
-  if (e.target === e.currentTarget) {
-    togglePopup(popupAction);
-  }
 
-  console.log(popupAction);
-  // console.log(e.target);
-  // console.log(e.currentTarget);
-};
+
