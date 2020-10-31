@@ -26,9 +26,11 @@
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__set/form__set.css);
 @import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_state_invalid/form__input_state_invalid.css);
 @import url(../blocks/form/__error-span/form__error-span.css);
 @import url(../blocks/form/__btn-exit/form__btn-exit.css);
 @import url(../blocks/form/__btn-input/form__btn-input.css);
+@import url(../blocks/form/__btn-input/state_blocked/form__btn-input_state_blocked.css);
 /* Конец: блок FORM */
 
 /* Старт: секция PHOTO-CARD */

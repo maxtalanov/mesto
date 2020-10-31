@@ -1,8 +1,3 @@
-
-const popup = document.querySelector('.popup');
-const popupAction = document.querySelector('.popup_opened');
-// закрытие попуп спомощью
-
 //Клонирует 6ть карточек из коробки
 const renderCard = () => {
   const item = initialCards.map(element => getItems(element));
@@ -19,7 +14,7 @@ const addHandlers = (e) => {
     link: inputLink.value
   });
   photoCard.prepend(items);
-  form.addEventListener('submit', handlerFormSubmit);
+  formProfile.addEventListener('submit', handlerFormSubmit);
   root.removeEventListener('keydown',  closePopupESC);
 
   togglePopup(popupCard);
@@ -110,13 +105,13 @@ function closePopupESC(evt) {
   }
 };
 
-// Закрыть попуп
-function exitPopupLayout(e) {
-  const popupAction = document.querySelector('.popup_opened');
-  if (e.target === e.currentTarget) {
-    togglePopup(popupAction);
-  }
-};
+// // Закрыть попуп
+// function exitPopupLayout(e) {
+//   const popupAction = document.querySelector('.popup_opened');
+//   if (e.target === e.currentTarget) {
+//     togglePopup(popupAction);
+//   }
+// };
 
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
@@ -127,7 +122,7 @@ btnOpenPopupProfile.addEventListener('click', () => {
 btnExitPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
   root.removeEventListener('keydown',  closePopupESC);
-  resetPopup(form);
+  resetPopup(formProfile);
 });
 
 btnSavePopupProfile.addEventListener('click', (e) => {
@@ -152,8 +147,8 @@ btnExitPopupImg.addEventListener('click', () => {
 });
 
 formCard.addEventListener('submit', addHandlers);
-form.addEventListener('submit', handlerFormSubmit);
-exitPopupLayoutHandler();
+formProfile.addEventListener('submit', handlerFormSubmit);
+// exitPopupLayoutHandler();
 renderCard();
 
 

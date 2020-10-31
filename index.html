@@ -34,17 +34,16 @@
   </footer>
 
   <section class="popup popup_type_profile">
-    <form class="form" action="#" name="profile" novalidate>
+    <form class="form form__profile" action="#" name="profile">
       <h2 class="form__title">Редактировать профиль</h2>
       <fieldset class="form__set form__profile">
         <input class="form__input form__name" id="profile-name" type="text" name="profile-name" placeholder="Введите ваше имя и/или фамилию"
         minlength="2" maxlength="40" autocomplete="off" required>
-        <span class="form__error-span"></span>
+        <span class="form__error-span" id="profile-name-error"></span>
 
-        <input class="form__input form__status" id="rofile-status" type="text" name="rofile-status" placeholder="Введите ваш статус"
+        <input class="form__input form__status" id="profile-status" type="text" name="profile-status" placeholder="Введите ваш статус"
         minlength="2" maxlength="200" autocomplete="off" required>
-        <span class="form__error-span"></span>
-
+        <span class="form__error-span" id="profile-status-error"></span>
       </fieldset>
       <button class="form__btn-exit hover-opacity" type="reset"></button>
       <input class="form__btn-input form__btn-save" type="submit" value="Сохранить">
@@ -52,17 +51,16 @@
   </section>
 
   <section class="popup popup_type_card">
-    <form class="form form-card" action="#" name="card" novalidate>
+    <form class="form form-card" action="#" name="card">
       <h2 class="form__title">Новое место</h2>
       <fieldset class="form__set">
         <input class="form__input form__in-name" id="card-name" type="text" name="card-name" placeholder="Название"
         minlength="2" maxlength="30" autocomplete="off" required>
-        <span class="form__error-span"></span>
+        <span class="form__error-span" id="card-name-error"></span>
 
         <input class="form__input form__in-link" id="card-link" type="url" name="card-link" placeholder="Ссылка на картинку"
         minlength="2" maxlength="30" autocomplete="off" required>
-        <span class="form__error-span"></span>
-
+        <span class="form__error-span" id="card-link-error"></span>
       </fieldset>
       <button class="form__btn-exit hover-opacity" type="reset"></button>
       <input class="form__btn-input form__btn-create" type="submit" value="Создать">
@@ -95,5 +93,6 @@
 
   <script src="./js/const.js"></script>
   <script src="./js/index.js"></script>
+  <script src="./js/validate.js"></script>
 </body>
 </html>

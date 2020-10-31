@@ -28,6 +28,8 @@ const initialCards = [
 const root = document.querySelector('.root');
 
 // Кнопки и модальное окно
+const popup = document.querySelector('.popup');
+
 const popupProfile = document.querySelector('.popup_type_profile');
 const btnOpenPopupProfile = document.querySelector('.profile__edit-button');
 const btnExitPopupProfile = popupProfile.querySelector('.form__btn-exit');
@@ -44,9 +46,9 @@ const imgEl = popupImg.querySelector('.show-img__img');
 const textEl = popupImg.querySelector('.show-img__text');
 
 //Фрма для профайла
-const form = document.querySelector('.form');
-const formName = form.querySelector('.form__name');
-const formStatus = form.querySelector('.form__status');
+const formProfile = document.querySelector('.form__profile');
+const formName = formProfile.querySelector('.form__name');
+const formStatus = formProfile.querySelector('.form__status');
 
 // Форма для card
 const formCard = document.querySelector('.form-card');
