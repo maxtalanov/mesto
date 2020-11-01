@@ -10,11 +10,42 @@
 //   errorClass: 'popup__error_visible'
 // });
 
-const formInput = formCard.querySelector('.form__input'); //54 строчка конст
+// const formC = document.querySelector('.form')
+// const formInput = formC.querySelector('.form__input'); //54 строчка конст
+// // console.log(formInput);
 
-//Блокировка не валидной кнопки
-function toggleBtnState(btnElement) {
-  if (formCard.checkValidity()) {
+// Показать ошибку
+function showError(formElements, input) {
+  console.log('false: работает');
+  const errorElement = formElements.querySelector(`#${input.id}-error`);
+  errorElement.textContent = input.validationMessage;
+  input.classList.add('form__input_state_invalid');
+};
+
+// Убрать ошибку
+function hideError(formElements, input) {
+  console.log('true: работает')
+  const errorElement = formElements.querySelector(`#${input.id}-error`);
+  errorElement.textContent = '';
+  input.classList.remove('form__input_state_invalid');
+};
+
+// ф-ия выполняет проврку валидный или нет
+// Если убирем  ошибку/...
+function checkInputValidity(formElements, input) {
+  console.log('Чек валидити =>')
+  if (input.checkValidity()) {
+    console.log("true")
+    hideError(formElements, input);
+  } else {
+    console.log("false")
+    showError(formElements, input);
+  }
+};
+
+// Блокировка не валидной кнопки
+function toggleBtnState(formElements, btnElement) {
+  if (formElements.checkValidity()) {
     btnElement.classList.remove('form__btn-input_state_blocked');
     btnElement.disabled = false;
   } else {
@@ -23,53 +54,35 @@ function toggleBtnState(btnElement) {
   }
 };
 
-//Поиск всех инаутов формы
-function setEventListener() {
-  const inputElement = Array.from(formCard.querySelectorAll('.form__input'));
-  const btnElement = formCard.querySelector('.form__btn-create');
+function setEventListener(formElements) {
+  const inputElement = Array.from(formElements.querySelectorAll('.form__input'));
+  const btnElement = formElements.querySelector('.form__btn-input');
+  console.log(inputElement);
+  console.log(btnElement);
 
   inputElement.forEach((input) => {
+    toggleBtnState(formElements, btnElement);
     input.addEventListener('input', (evt) => {
-      checkInputValidity(evt.target);
-      toggleBtnState(btnElement);
+      // console.log('oN_oN');
+      checkInputValidity(formElements, evt.target);
+      toggleBtnState(formElements, btnElement);
     });
   });
-
-  toggleBtnState(btnElement);
 };
 
-// Показать ошибку
-function showError(input) {
-  const errorElement = formCard.querySelector(`#${input.id}-error`);
-  errorElement.textContent = input.validationMessage;
-  input.classList.add('form__input_state_invalid');
+function enableValidation() {
+  const formElements = Array.from(document.querySelectorAll('.form'));
+  console.log(formElements);
+
+  formElements.forEach((form) => {
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      // console.log('oN');
+    });
+
+    setEventListener(form);
+  });
 };
 
-// Убрать ошибку
-function hideError(input) {
-  const errorElement = formCard.querySelector(`#${input.id}-error`);
-  errorElement.textContent = '';
-  input.classList.remove('form__input_state_invalid');
-};
+enableValidation();
 
-// ф-ия выполняет проврку валидный или нет
-// Если убирем  ошибку/...
-function checkInputValidity(input) {
-  if (input.checkValidity()) {
-    hideError(input);
-  } else {
-    showError(input);
-  }
-};
-
-//Обработчик полей INPUT
-inputName.addEventListener('input', (evt) => {
-  checkInputValidity(evt.target);
-});
-
-//Вызван обработчик формы submit
-formCard.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-});
-
-setEventListener();
