@@ -1,6 +1,6 @@
 //Клонирует 6ть карточек из коробки
 const renderCard = () => {
-  const item = initialCards.map(element => getItems(element));
+  const item = initialCards.map(element => getItem(element));
 
   photoCard.append(...item);
 };
@@ -9,20 +9,20 @@ const renderCard = () => {
 const addHandlers = (e) => {
   e.preventDefault();
 
-  const items = getItems({
+  const items = getItem({
     name: inputName.value,
     link: inputLink.value
   });
   photoCard.prepend(items);
-  formProfile.addEventListener('submit', handlerFormSubmit);
+  formProfile.addEventListener('submit', handleFormSubmit);
   root.removeEventListener('keydown',  closePopupESC);
 
   togglePopup(popupCard);
-  resetPopup(formCard);
+  resetForm(formCard);
 };
 
 // Открыть картинку
-const hendlerOpenImg = (data) => {
+const hendleOpenImg = (data) => {
   imgEl.src = data.link;
   imgEl.alt = data.name;
   textEl.textContent = data.name;
@@ -32,35 +32,35 @@ const hendlerOpenImg = (data) => {
   };
 
 // Лайк карточке
-const handlerLike = (evt) => {
+const handleLike = (evt) => {
   evt.target.classList.toggle('card__btn-like_active');
 };
 
 // Удалить карточку
-const handlerRemove = (evt) => {
+const handleRemove = (evt) => {
   evt.target.closest('.card').remove();
 };
 
 //Карточки
-const getItems = (data) => {
+const getItem = (data) => {
   const card = templateCard.content.cloneNode(true);
-  const cardImages = card.querySelector('.card__img');
+  const cardImage = card.querySelector('.card__img');
 
   card.querySelector('.card__title').textContent = data.name;
-  cardImages.src = data.link;
-  cardImages.alt = data.name;
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
 
   const btnRemove = card.querySelector('.trash');
   const btnLike = card.querySelector('.card__btn-like');
-  btnRemove.addEventListener('click', handlerRemove);
-  btnLike.addEventListener('click', handlerLike);
-  cardImages.addEventListener('click', () => hendlerOpenImg(data));
+  btnRemove.addEventListener('click', handleRemove);
+  btnLike.addEventListener('click', handleLike);
+  cardImage.addEventListener('click', () => hendleOpenImg(data));
 
   return card;
 };
 
 
-function addPopup() {
+function addProfileInfo() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
 };
@@ -71,12 +71,12 @@ function togglePopup(p) {
 };
 
 // функция сброса форм
-function resetPopup(f) {
-  f.reset();
+function resetForm(form) {
+  form.reset();
 };
 
 // Обработчик формы Profail
-function handlerFormSubmit(evt) {
+function handleFormSubmit(evt) {
   evt.preventDefault();
 
   name.textContent = formName.value;
@@ -96,27 +96,27 @@ function closePopupESC(evt) {
 
 
 document.addEventListener('click', (evt) => {
-  const popupAction = document.querySelector('.popup_opened');
+  const activePopup = document.querySelector('.popup_opened');
 
   if (evt.target.classList.contains('popup')) {
-    togglePopup(popupAction);
+    togglePopup(activePopup);
   };
 });
 
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
-  addPopup();
+  addProfileInfo();
   root.addEventListener('keydown',  closePopupESC);
 });
 
 btnExitPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
   root.removeEventListener('keydown',  closePopupESC);
-  resetPopup(formProfile);
+  resetForm(formProfile);
 });
 
 btnSavePopupProfile.addEventListener('click', (e) => {
-  handlerFormSubmit(e);
+  handleFormSubmit(e);
   togglePopup(popupProfile);
 });
 
@@ -129,7 +129,7 @@ btnOpenPopupCard.addEventListener('click', () => {
 btnExitPopupCard.addEventListener('click', () => {
   togglePopup(popupCard);
   root.removeEventListener('keydown',  closePopupESC);
-  resetPopup(formCard);
+  resetForm(formCard);
 });
 
 btnExitPopupImg.addEventListener('click', () => {
@@ -138,7 +138,7 @@ btnExitPopupImg.addEventListener('click', () => {
 });
 
 formCard.addEventListener('submit', addHandlers);
-formProfile.addEventListener('submit', handlerFormSubmit);
+formProfile.addEventListener('submit', handleFormSubmit);
 renderCard();
 
 
