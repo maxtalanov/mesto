@@ -14,8 +14,6 @@ const addHandlers = (e) => {
     link: inputLink.value
   });
   photoCard.prepend(items);
-  formProfile.addEventListener('submit', handleFormSubmit);
-  root.removeEventListener('keydown',  closePopupESC);
 
   togglePopup(popupCard);
   resetForm(formCard);
@@ -59,15 +57,18 @@ const getItem = (data) => {
   return card;
 };
 
-
 function addProfileInfo() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
 };
 
 //функция открытие закрытие попапа
-function togglePopup(p) {
-  p.classList.toggle('popup_opened');
+function togglePopup(popup) {
+  popup.classList.toggle('popup_opened');
+  if (popup.classList.contains('popup_opened')) {
+    root.addEventListener('keydown',  closePopupESC);
+  }
+  root.removeEventListener('keydown',  closePopupESC);
 };
 
 // функция сброса форм
@@ -81,8 +82,6 @@ function handleFormSubmit(evt) {
 
   name.textContent = formName.value;
   status.textContent = formStatus.value;
-
-  root.removeEventListener('keydown',  closePopupESC);
 };
 
 //Закрытие popup ESC
@@ -90,53 +89,50 @@ function closePopupESC(evt) {
   const popupAction = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
     togglePopup(popupAction);
-    popup.removeEventListener('keydown',  closePopupESC);
   }
 };
 
-
-document.addEventListener('click', (evt) => {
-  const activePopup = document.querySelector('.popup_opened');
-
-  if (evt.target.classList.contains('popup')) {
-    togglePopup(activePopup);
-  };
+//Закрытие по Оверлею
+popups.forEach((popup) => {
+  popup.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('popup')) {
+      togglePopup(popup);
+    };
+  });
 });
 
+//Обработчик кнопки открытия PROFAILE
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
   addProfileInfo();
   root.addEventListener('keydown',  closePopupESC);
 });
 
-btnExitPopupProfile.addEventListener('click', () => {
-  togglePopup(popupProfile);
-  root.removeEventListener('keydown',  closePopupESC);
-  resetForm(formProfile);
-});
-
-btnSavePopupProfile.addEventListener('click', (e) => {
-  handleFormSubmit(e);
-  togglePopup(popupProfile);
-});
-
+//Обработчик кнопки открытия CARD
 btnOpenPopupCard.addEventListener('click', () => {
 
   togglePopup(popupCard);
   root.addEventListener('keydown',  closePopupESC);
 });
 
+// Обработчик кнопки закрытия PROFAILE
+btnExitPopupProfile.addEventListener('click', () => {
+  togglePopup(popupProfile);
+  resetForm(formProfile);
+});
+
+// Обработчик кнопки закрытия CARD
 btnExitPopupCard.addEventListener('click', () => {
   togglePopup(popupCard);
-  root.removeEventListener('keydown',  closePopupESC);
   resetForm(formCard);
 });
 
+// Обработчик кнопки закрытия IMG
 btnExitPopupImg.addEventListener('click', () => {
   togglePopup(popupImg);
-  popup.removeEventListener('keydown',  closePopupESC);
 });
 
+//Обработчика запускающиеся при загрузке страницы
 formCard.addEventListener('submit', addHandlers);
 formProfile.addEventListener('submit', handleFormSubmit);
 renderCard();

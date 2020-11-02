@@ -28,6 +28,7 @@ const initialCards = [
 const root = document.querySelector('.root');
 
 // Кнопки и модальное окно
+const popups = document.querySelectorAll('.popup');
 const popup = document.querySelector('.popup');
 
 const popupProfile = document.querySelector('.popup_type_profile');
