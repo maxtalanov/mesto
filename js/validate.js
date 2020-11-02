@@ -45,7 +45,7 @@ function setEventListener(formElements, {inputSelector, submitButtonSelector, ..
   // console.log(btnElement);
 
   inputElement.forEach((input) => {
-    toggleBtnState(formElements, btnElement, {...rest});
+    toggleBtnState(formElements, btnElement, rest);
 
     input.addEventListener('input', (evt) => {
       // console.log('oN_oN');
@@ -57,7 +57,7 @@ function setEventListener(formElements, {inputSelector, submitButtonSelector, ..
 
 function enableValidation({formSelector, ...rest}) {
   const formElements = Array.from(document.querySelectorAll(formSelector));
-  console.log(formElements);
+  // console.log(formElements);
 
   formElements.forEach((form) => {
     form.addEventListener('submit', (evt) => {
@@ -65,10 +65,11 @@ function enableValidation({formSelector, ...rest}) {
       // console.log('oN');
     });
 
-    setEventListener(form, {...rest});
+    setEventListener(form, rest);
   });
 };
 
+// Конфигурации и вызов функции
 enableValidation({
   formSelector: '.form',
   inputSelector: '.form__input',

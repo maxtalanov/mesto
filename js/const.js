@@ -30,19 +30,20 @@ const root = document.querySelector('.root');
 // Кнопки и модальное окно
 const popups = document.querySelectorAll('.popup');
 const popup = document.querySelector('.popup');
+const btnExitPopup = document.querySelector('popup__btn-exit')
 
 const popupProfile = document.querySelector('.popup_type_profile');
 const btnOpenPopupProfile = document.querySelector('.profile__edit-button');
-const btnExitPopupProfile = popupProfile.querySelector('.form__btn-exit');
+// const btnExitPopupProfile = popupProfile.querySelector('.form__btn-exit');
 const btnSavePopupProfile = popupProfile.querySelector('.form__btn-save');
 
 const popupCard = document.querySelector('.popup_type_card');
 const btnOpenPopupCard = document.querySelector('.profile__add-button');
-const btnExitPopupCard = popupCard.querySelector('.form__btn-exit');
+// const btnExitPopupCard = popupCard.querySelector('.form__btn-exit');
 const btnCreatePopupCard = popupCard.querySelector('.form__btn-create');
 
 const popupImg = document.querySelector('.popup_type_img');
-const btnExitPopupImg = popupImg.querySelector('.show-img__btn-exit');
+// const btnExitPopupImg = popupImg.querySelector('.show-img__btn-exit');
 const imgEl = popupImg.querySelector('.show-img__img');
 const textEl = popupImg.querySelector('.show-img__text');
 

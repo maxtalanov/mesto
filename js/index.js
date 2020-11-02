@@ -82,6 +82,8 @@ function handleFormSubmit(evt) {
 
   name.textContent = formName.value;
   status.textContent = formStatus.value;
+
+  togglePopup(popupProfile);
 };
 
 //Закрытие popup ESC
@@ -95,7 +97,7 @@ function closePopupESC(evt) {
 //Закрытие по Оверлею
 popups.forEach((popup) => {
   popup.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('popup')) {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__btn-exit')) {
       togglePopup(popup);
     };
   });
@@ -113,23 +115,6 @@ btnOpenPopupCard.addEventListener('click', () => {
 
   togglePopup(popupCard);
   root.addEventListener('keydown',  closePopupESC);
-});
-
-// Обработчик кнопки закрытия PROFAILE
-btnExitPopupProfile.addEventListener('click', () => {
-  togglePopup(popupProfile);
-  resetForm(formProfile);
-});
-
-// Обработчик кнопки закрытия CARD
-btnExitPopupCard.addEventListener('click', () => {
-  togglePopup(popupCard);
-  resetForm(formCard);
-});
-
-// Обработчик кнопки закрытия IMG
-btnExitPopupImg.addEventListener('click', () => {
-  togglePopup(popupImg);
 });
 
 //Обработчика запускающиеся при загрузке страницы
