@@ -64,10 +64,12 @@ function addProfileInfo() {
 //функция открытие закрытие попапа
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
+
   if (popup.classList.contains('popup_opened')) {
     root.addEventListener('keydown',  closePopupESC);
+  } else {
+    root.removeEventListener('keydown',  closePopupESC);
   }
-  root.removeEventListener('keydown',  closePopupESC);
 };
 
 // функция сброса форм
