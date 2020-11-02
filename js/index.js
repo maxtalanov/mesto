@@ -1,12 +1,12 @@
 //Клонирует 6ть карточек из коробки
-const renderCard = () => {
-  const item = initialCards.map(element => getItem(element));
+const renderCards = () => {
+  const items = initialCards.map(element => getItem(element));
 
-  photoCard.append(...item);
+  photoCard.append(...items);
 };
 
 // Создание new карточкек
-const addHandlers = (e) => {
+const handleAddCard = (e) => {
   e.preventDefault();
 
   const items = getItem({
@@ -20,13 +20,12 @@ const addHandlers = (e) => {
 };
 
 // Открыть картинку
-const hendleOpenImg = (data) => {
+const handleOpenImg = (data) => {
   imgEl.src = data.link;
   imgEl.alt = data.name;
   textEl.textContent = data.name;
 
   togglePopup(popupImg);
-  root.addEventListener('keydown',  closePopupESC);
   };
 
 // Лайк карточке
@@ -52,7 +51,7 @@ const getItem = (data) => {
   const btnLike = card.querySelector('.card__btn-like');
   btnRemove.addEventListener('click', handleRemove);
   btnLike.addEventListener('click', handleLike);
-  cardImage.addEventListener('click', () => hendleOpenImg(data));
+  cardImage.addEventListener('click', () => handleOpenImg(data));
 
   return card;
 };
@@ -107,23 +106,14 @@ popups.forEach((popup) => {
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
   addProfileInfo();
-  root.addEventListener('keydown',  closePopupESC);
 });
 
 //Обработчик кнопки открытия CARD
 btnOpenPopupCard.addEventListener('click', () => {
-
   togglePopup(popupCard);
-  root.addEventListener('keydown',  closePopupESC);
 });
 
 //Обработчика запускающиеся при загрузке страницы
-formCard.addEventListener('submit', addHandlers);
+formCard.addEventListener('submit', handleAddCard);
 formProfile.addEventListener('submit', handleFormSubmit);
-renderCard();
-
-
-
-
-
-
+renderCards();
