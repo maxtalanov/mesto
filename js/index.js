@@ -36,17 +36,6 @@ const handlerLike = (evt) => {
   evt.target.classList.toggle('card__btn-like_active');
 };
 
-//Закрыть попап по фону
-const exitPopupLayoutHandler = () => {
-  const popupList = (document.querySelectorAll('.popup'));
-  console.log(popupList);
-
-  popupList.forEach((popupElement) => {
-    popupElement.addEventListener('click', () => exitPopupLayout(popupElement));
-    // console.log(popupElement);
-  })
-};
-
 // Удалить карточку
 const handlerRemove = (evt) => {
   evt.target.closest('.card').remove();
@@ -105,13 +94,14 @@ function closePopupESC(evt) {
   }
 };
 
-// // Закрыть попуп
-// function exitPopupLayout(e) {
-//   const popupAction = document.querySelector('.popup_opened');
-//   if (e.target === e.currentTarget) {
-//     togglePopup(popupAction);
-//   }
-// };
+
+document.addEventListener('click', (evt) => {
+  const popupAction = document.querySelector('.popup_opened');
+
+  if (evt.target.classList.contains('popup')) {
+    togglePopup(popupAction);
+  };
+});
 
 btnOpenPopupProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
@@ -131,6 +121,7 @@ btnSavePopupProfile.addEventListener('click', (e) => {
 });
 
 btnOpenPopupCard.addEventListener('click', () => {
+
   togglePopup(popupCard);
   root.addEventListener('keydown',  closePopupESC);
 });
@@ -148,7 +139,6 @@ btnExitPopupImg.addEventListener('click', () => {
 
 formCard.addEventListener('submit', addHandlers);
 formProfile.addEventListener('submit', handlerFormSubmit);
-// exitPopupLayoutHandler();
 renderCard();
 
 
