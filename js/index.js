@@ -1,3 +1,5 @@
+import { Card } from './card.js';
+
 //Клонирует 6ть карточек из коробки
 const renderCards = () => {
   const items = initialCards.map(element => getItem(element));
@@ -41,6 +43,10 @@ const handleRemove = (evt) => {
 //Карточки
 const getItem = (data) => {
   const card = templateCard.content.cloneNode(true);
+  console.log(card);
+
+  const card1 = new Card(data.name, data.link, '.template-card');
+  console.log(card1);
   const cardImage = card.querySelector('.card__img');
 
   card.querySelector('.card__title').textContent = data.name;
@@ -54,7 +60,7 @@ const getItem = (data) => {
   cardImage.addEventListener('click', () => handleOpenImg(data));
 
   return card;
-};
+}
 
 function addProfileInfo() {
   formName.value = name.textContent;
