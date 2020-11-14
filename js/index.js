@@ -1,13 +1,8 @@
 import { Card } from './card.js';
+import { togglePopup, resetForm } from './utils.js';
 
-//Клонирует 6ть карточек из коробки
-const renderCards = () => {
-  const items = initialCards.map(element => getItem(element));
 
-  photoCard.append(...items);
-};
-
-// Создание new карточкек
+// Создание новой карточки
 const handleAddCard = (e) => {
   e.preventDefault();
 
@@ -21,66 +16,23 @@ const handleAddCard = (e) => {
   resetForm(formCard);
 };
 
-// Открыть картинку
-const handleOpenImg = (data) => {
-  imgEl.src = data.link;
-  imgEl.alt = data.name;
-  textEl.textContent = data.name;
+//Клонирует 6ть карточек из коробки
+const renderCards = () => {
+  const items = initialCards.map(element => getItem(element));
 
-  togglePopup(popupImg);
-  };
-
-// Лайк карточке
-const handleLike = (evt) => {
-  evt.target.classList.toggle('card__btn-like_active');
+  photoCard.append(...items);
 };
 
-// Удалить карточку
-const handleRemove = (evt) => {
-  evt.target.closest('.card').remove();
-};
-
-//Карточки
+//Распоковка объекта для рендра
 const getItem = (data) => {
-  const card = templateCard.content.cloneNode(true);
-  console.log(card);
+  const listCards = new Card(data.name, data.link, '.template-card');
 
-  const card1 = new Card(data.name, data.link, '.template-card');
-  console.log(card1);
-  const cardImage = card.querySelector('.card__img');
-
-  card.querySelector('.card__title').textContent = data.name;
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-
-  const btnRemove = card.querySelector('.trash');
-  const btnLike = card.querySelector('.card__btn-like');
-  btnRemove.addEventListener('click', handleRemove);
-  btnLike.addEventListener('click', handleLike);
-  cardImage.addEventListener('click', () => handleOpenImg(data));
-
-  return card;
+  return listCards.render();
 }
 
 function addProfileInfo() {
   formName.value = name.textContent;
   formStatus.value = status.textContent;
-};
-
-//функция открытие закрытие попапа
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
-
-  if (popup.classList.contains('popup_opened')) {
-    root.addEventListener('keydown',  closePopupESC);
-  } else {
-    root.removeEventListener('keydown',  closePopupESC);
-  }
-};
-
-// функция сброса форм
-function resetForm(form) {
-  form.reset();
 };
 
 // Обработчик формы Profail
@@ -92,23 +44,6 @@ function handleFormSubmit(evt) {
 
   togglePopup(popupProfile);
 };
-
-//Закрытие popup ESC
-function closePopupESC(evt) {
-  const popupAction = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape') {
-    togglePopup(popupAction);
-  }
-};
-
-//Закрытие по Оверлею
-popups.forEach((popup) => {
-  popup.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__btn-exit')) {
-      togglePopup(popup);
-    };
-  });
-});
 
 //Обработчик кнопки открытия PROFAILE
 btnOpenPopupProfile.addEventListener('click', () => {
