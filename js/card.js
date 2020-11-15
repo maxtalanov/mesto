@@ -1,3 +1,4 @@
+import { imgEl, textEl, popupImg } from  './const.js';
 import { togglePopup, resetForm } from './utils.js';
 
 

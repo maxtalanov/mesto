@@ -1,7 +1,3 @@
-import { Card } from './card.js';
-import { togglePopup, resetForm } from './utils.js';
-import { FormValidator } from './FormValidator.js';
-
 //Валидатор для форм
 const formValidator = new FormValidator(
   '.form',
@@ -71,4 +67,26 @@ formCard.addEventListener('submit', handleAddCard);
 formProfile.addEventListener('submit', handleFormSubmit);
 formValidator.enableValidation();
 renderCards();
+
+
+// Импортируемые данные
+import {
+  initialCards,
+  popupProfile,
+  btnOpenPopupProfile,
+  popupCard,
+  btnOpenPopupCard,
+  formProfile,
+  formName,
+  formStatus,
+  formCard,
+  inputName,
+  inputLink,
+  name,
+  status,
+  photoCard
+} from  './const.js';
+import { Card } from './card.js';
+import { togglePopup, resetForm } from './utils.js';
+import { FormValidator } from './FormValidator.js';
 
