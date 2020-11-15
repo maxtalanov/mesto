@@ -1,5 +1,16 @@
 import { Card } from './card.js';
 import { togglePopup, resetForm } from './utils.js';
+import { FormValidator } from './FormValidator.js';
+
+//Валидатор для форм
+const FormValidator = new FormValidator(
+  '.form',
+  '.form__input',
+  '.form__btn-input',
+  'form__btn-input_state_blocked',
+  'form__input_state_invalid',
+  'error'
+);
 
 
 // Создание новой карточки
@@ -60,3 +71,4 @@ btnOpenPopupCard.addEventListener('click', () => {
 formCard.addEventListener('submit', handleAddCard);
 formProfile.addEventListener('submit', handleFormSubmit);
 renderCards();
+FormValidator.enableValidation();
