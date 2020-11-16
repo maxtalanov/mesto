@@ -48,7 +48,7 @@ export const imgEl = popupImg.querySelector('.show-img__img');
 export const textEl = popupImg.querySelector('.show-img__text');
 
 //Фрма для профайла
-export const formProfile = document.querySelector('.form__profile');
+export const formProfile = document.querySelector('.form-profile');
 export const formName = formProfile.querySelector('.form__name');
 export const formStatus = formProfile.querySelector('.form__status');
 
