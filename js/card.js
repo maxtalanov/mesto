@@ -12,6 +12,7 @@ export class Card {
   //Удаллить карточку
   _remove () {
     this._card.remove();
+    this._card = null;
   };
 
   //Лайк карточки

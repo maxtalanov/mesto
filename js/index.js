@@ -1,6 +1,15 @@
-//Валидатор для форм
-const formValidator = new FormValidator(
-  '.form',
+//Валидатор для форм profile
+const formValidatorProfile = new FormValidator(
+  '.form-profile',
+  '.form__input',
+  '.form__btn-input',
+  'form__btn-input_state_blocked',
+  'form__input_state_invalid',
+  'error'
+);
+
+const formValidatorCard = new FormValidator(
+  '.form-card',
   '.form__input',
   '.form__btn-input',
   'form__btn-input_state_blocked',
@@ -65,7 +74,8 @@ btnOpenPopupCard.addEventListener('click', () => {
 //Обработчика запускающиеся при загрузке страницы
 formCard.addEventListener('submit', handleAddCard);
 formProfile.addEventListener('submit', handleFormSubmit);
-formValidator.enableValidation();
+formValidatorProfile.enableValidation();
+formValidatorCard.enableValidation();
 renderCards();
 
 
