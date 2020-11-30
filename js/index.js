@@ -1,3 +1,51 @@
+//Старт: Зона importa
+import {
+  initialCards,
+  popupProfile,
+  btnOpenPopupProfile,
+  popupCard,
+  btnOpenPopupCard,
+  formProfile,
+  formName,
+  formStatus,
+  formCard,
+  inputName,
+  inputLink,
+  name,
+  status,
+  photoCard
+} from  './utils/constants.js';
+import { Card } from './card.js';
+import { togglePopup, resetForm } from './utils.js';
+import { FormValidator } from './FormValidator.js';
+import { Section } from './components/Section.js';
+import { Popup } from './components/Popup.js';
+//Конец: зоны importа
+
+//popup
+const popup = new Popup('.popup_type_profile');
+popup.setEventListeners();
+//popup
+
+//Сборка карточек при запуску страницы
+const listCards = new Section({
+  inItems: initialCards,
+  renderer: (data) => {
+    const card = new Card(data.name, data.link, '.template-card');
+    const cardElement = card.render();
+
+    listCards.addItem(cardElement);
+  }
+}, photoCard);
+listCards.renderer()
+
+//Создание новой карточку
+// const addCard = new Section({
+//   inItems: console.log('Go ONE'),
+//   renderer: console.log('Go TO')
+// }, photoCard);
+// addCard.addItem();
+
 //Валидатор для форм profile
 const formValidatorProfile = new FormValidator(
   '.form-profile',
@@ -31,19 +79,19 @@ const handleAddCard = (e) => {
   resetForm(formCard);
 };
 
-//Клонирует 6ть карточек из коробки
-const renderCards = () => {
-  const items = initialCards.map(element => getItem(element));
+// //Клонирует 6ть карточек из коробки
+// const renderCards = () => {
+//   const items = initialCards.map(element => getItem(element));
 
-  photoCard.append(...items);
-};
+//   photoCard.append(...items);
+// };
 
 //Распоковка объекта для рендра
-const getItem = (data) => {
-  const listCards = new Card(data.name, data.link, '.template-card');
+// const getItem = (data) => {
+//   const listCards = new Card(data.name, data.link, '.template-card');
 
-  return listCards.render();
-}
+//   return listCards.render();
+// }
 
 function addProfileInfo() {
   formName.value = name.textContent;
@@ -76,27 +124,4 @@ formCard.addEventListener('submit', handleAddCard);
 formProfile.addEventListener('submit', handleFormSubmit);
 formValidatorProfile.enableValidation();
 formValidatorCard.enableValidation();
-renderCards();
-
-
-// Импортируемые данные
-import {
-  initialCards,
-  popupProfile,
-  btnOpenPopupProfile,
-  popupCard,
-  btnOpenPopupCard,
-  formProfile,
-  formName,
-  formStatus,
-  formCard,
-  inputName,
-  inputLink,
-  name,
-  status,
-  photoCard
-} from  './const.js';
-import { Card } from './card.js';
-import { togglePopup, resetForm } from './utils.js';
-import { FormValidator } from './FormValidator.js';
-
+// renderCards();

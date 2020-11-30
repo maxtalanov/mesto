@@ -1,6 +1,7 @@
+//Старт: Зона importa
 import { imgEl, textEl, popupImg } from  './const.js';
 import { togglePopup, resetForm } from './utils.js';
-
+//Конец: Зоны importа
 
 export class Card {
   constructor(name, link, templateSelector) {

@@ -1,6 +1,6 @@
 import { root, popups } from  './const.js';
 
-//функция открытие закрытие попапа
+// функция открытие закрытие попапа
 export function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
 
