@@ -1,13 +1,14 @@
 //Старт: Зона importa
-import { imgEl, textEl, popupImg } from  './const.js';
-import { togglePopup, resetForm } from './utils.js';
+
 //Конец: Зоны importа
 
 export class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._template = document.querySelector(templateSelector).content.querySelector('.card');
+
+    this._handleCardClick = handleCardClick; // ф-ия
   };
 
   //Удаллить карточку
@@ -21,15 +22,6 @@ export class Card {
     this._cardLike.classList.toggle('card__btn-like_active');
   };
 
-  // Открыть картинку в попап
-  _openCardImg() {
-    imgEl.src = this._link;
-    imgEl.alt = this._name;
-    textEl.textContent = this._name;
-
-    togglePopup(popupImg);
-  };
-
   // Рендер карточек
   render() {
     //клонирование котейнера
@@ -41,7 +33,6 @@ export class Card {
     this._cardRemove = this._card.querySelector('.trash');
     this._cardLike = this._card.querySelector('.card__btn-like');
 
-
     //данные
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
@@ -50,9 +41,8 @@ export class Card {
     //Обработчики
     this._cardRemove.addEventListener('click', () => this._remove());
     this._cardLike.addEventListener('click', () => this._like());
-    this._cardImage.addEventListener('click', () => this._openCardImg(this._link, this._name));
+    this._cardImage.addEventListener('click', () => {this._handleCardClick()});
 
-    // console.log(this._card);
     return this._card;
   };
 

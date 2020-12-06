@@ -1,22 +1,22 @@
 //Старт: Зона importa
-import { formName, formStatus } from  './utils/constants.js';
+import { name, status } from  '../utils/constants.js';
 //Конец: зоны importа
 
 export class UserInfo {
   constructor(selectorName, selectorStatus) {
     this._selectorName = document.querySelector(selectorName);
-    this._selectorStatus = document.querySelector(selectorStatus)
+    this._selectorStatus = document.querySelector(selectorStatus);
   }
 
   //метод возврат obj с данными пользовотеля (публичный)
   getUserInfo() {
-    formName.value = this._selectorName.textContent;
-    formStatus.value = this._selectorStatus.textContent;
+    this._selectorName.value = name.textContent;
+    this._selectorStatus.value = status.textContent;
   }
 
   //метод new данные пользовотеля + добавление их на страницу (публичный)
   setUserInfo() {
-    this._selectorName.textContent = formName.value;
-    this._selectorStatus.textContent = formStatus.value;
+    name.textContent = this._selectorName.value;
+    status.textContent = this._selectorStatus.value;
   }
 }
