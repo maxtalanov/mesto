@@ -4,9 +4,7 @@ import { Popup } from './Popup.js';
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, submitForm) {
-
     super(popupSelector); //Передаем наследника
-    console.log(this._popupSelector);
     this._submitForm = submitForm; //функция
 
     //Переменные
@@ -18,6 +16,7 @@ export class PopupWithForm extends Popup {
   close() {
     this._form.reset();
     super.close();
+    console.log(super.close());
   }
 
   //метод сбора информации с форм (приватный)
@@ -28,18 +27,19 @@ export class PopupWithForm extends Popup {
       this.inputValue[elementInput.name] = elementInput.value;
     });
     return this.inputValue;
-    console.log(this.inputValue);
   }
 
   _submitForm(evt) {
     evt.preventDefault();
-    this._submitForm(this._getInputValues());
+
+    this._submitForm(this._getInputValue());
     this.close();
+    console.log(this.close);
   }
 
   //метод обработчиков
   setEventListeners() {
-    // this._popupSelector.addEventListerin('submit', this._submitForm.bind(this));
+    this._form.addEventListener('submit', this._submitForm.bind(this));
     super.setEventListeners();
   }
 
