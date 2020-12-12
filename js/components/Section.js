@@ -13,14 +13,17 @@ export class Section {
   // метод отрисовки элемента (публичный)
   renderer() {
     this._inItems.forEach(elItem => {
-      // console.log('inital card for massiv -> OK');
       this._renderer(elItem);
     });
   }
 
   //метод добовляет DOM в контейнер (публичный)
   addItem(element) {
-    // console.log('NEW ELEMENT -> OK');
     this._container.append(element);
+  }
+
+  //метод добавления карточки через попап (публичный)
+  addNewItem(element) {
+    this._container.prepend(element);
   }
 }

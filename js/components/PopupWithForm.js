@@ -16,7 +16,6 @@ export class PopupWithForm extends Popup {
   close() {
     this._form.reset();
     super.close();
-    console.log(super.close());
   }
 
   //метод сбора информации с форм (приватный)
@@ -29,18 +28,18 @@ export class PopupWithForm extends Popup {
     return this.inputValue;
   }
 
-  _submitForm(evt) {
+  _submitFormHendler(evt) {
     evt.preventDefault();
 
-    this._submitForm(this._getInputValue());
+    this._submitForm(this._getInputValues());
     this.close();
-    console.log(this.close);
   }
 
   //метод обработчиков
   setEventListeners() {
-    this._form.addEventListener('submit', this._submitForm.bind(this));
+    this._form.addEventListener('submit', this._submitFormHendler.bind(this));
     super.setEventListeners();
   }
 
 }
+

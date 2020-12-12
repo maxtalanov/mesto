@@ -4,13 +4,13 @@ import {
   btnOpenPopupProfile,
   btnOpenPopupCard,
   photoCard
-} from  './utils/constants.js';
-import { Card } from './card.js';
-import { FormValidator } from './FormValidator.js';
-import { Section } from './components/Section.js';
-import { UserInfo } from './components/UserInfo.js';
-import { PopupWithForm } from './components/PopupWithForm.js';
-import { PopupWithImage } from './components/PopupWithImage.js';
+} from  '../utils/constants.js';
+import { Card } from '../components/card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
 //Конец: зоны importа
 
 //Старт: cекция создания obj
@@ -18,24 +18,22 @@ import { PopupWithImage } from './components/PopupWithImage.js';
 //Рефреш данных
 const userInfo = new UserInfo('.form__name', '.form__status');
 
+const popupImage = new PopupWithImage('.popup_type_img');
+
 const popupProfile = new PopupWithForm('.popup_type_profile', (data) => {
   userInfo.setUserInfo(data);
 });
-popupProfile.setEventListeners();
 
-// const popupCard = new PopupWithForm('.popup_type_card', (data) => {
-//   const addCard = new Card(data.name, data.link, '.template-card', () => {
-//     const name = data.name
-//     const link = data.link
-//     popupImg.open(name, link)
-//   });
-//   const cardElement = addCard.render();
-//   photoCard.prepend(cardElement);
-// });
-// popupCard.setEventListeners();
+const popupCard = new PopupWithForm('.popup_type_card', (data) => {
+  const addCard = new Card(data['card-name'], data['card-link'], '.template-card', () => {
+    const name = data['card-name'];
+    const link = data['card-link'];
+    popupImage.open(link, name);
 
-const popupImage = new PopupWithImage('.popup_type_img');
-popupImage.setEventListeners();
+  });
+  const cardElement = addCard.render();
+  listCards.addNewItem(cardElement);
+});
 
 //Сборка карточек при запуску страницы
 const listCards = new Section({
@@ -52,8 +50,6 @@ const listCards = new Section({
     listCards.addItem(cardElement);
   }
 }, photoCard);
-listCards.renderer() //перенести вниз? Узнать!
-
 
 //Валидатор для форм profile
 const formValidatorProfile = new FormValidator(
@@ -65,15 +61,15 @@ const formValidatorProfile = new FormValidator(
   'error'
 );
 
-// //Валидатор для форм card
-// const formValidatorCard = new FormValidator(
-//   '.form-card',
-//   '.form__input',
-//   '.form__btn-input',
-//   'form__btn-input_state_blocked',
-//   'form__input_state_invalid',
-//   'error'
-// );
+//Валидатор для форм card
+const formValidatorCard = new FormValidator(
+  '.form-card',
+  '.form__input',
+  '.form__btn-input',
+  'form__btn-input_state_blocked',
+  'form__input_state_invalid',
+  'error'
+);
 
 //Обработчик кнопки открытия PROFAILE
 btnOpenPopupProfile.addEventListener('click', () => {
@@ -87,6 +83,9 @@ btnOpenPopupCard.addEventListener('click', () => {
 });
 
 //Обработчика запускающиеся при загрузке страницы
-
+listCards.renderer();
+popupProfile.setEventListeners();
+popupCard.setEventListeners();
+popupImage.setEventListeners();
 formValidatorProfile.enableValidation();
-// formValidatorCard.enableValidation();
+formValidatorCard.enableValidation();

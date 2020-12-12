@@ -1,6 +1,5 @@
 //Старт: Зона importa
 import { root } from '../utils/constants.js';
-
 //Конец: зоны importа
 
 export class Popup {
@@ -16,8 +15,6 @@ export class Popup {
   open() {
     this._popupSelector.classList.add('popup_opened');
     root.addEventListener('keydown', this._handleEscClose);
-    console.log('open() -> OK');
-    console.log(this._popupSelector);
   }
 
   // метод закрытия (публичный)
@@ -42,7 +39,8 @@ export class Popup {
 
   // метод btn-exit (публичный)
   setEventListeners() {
-    this._popupSelector.addEventListener('click', () => this._handleOverlayClose.bind(this));
-    this._btnExitPopup.addEventListener('click', () => this.close.bind(this));
+    this._popupSelector.addEventListener('click', this._handleOverlayClose.bind(this));
+    this._btnExitPopup.addEventListener('click', this.close.bind(this));
   }
 }
+
