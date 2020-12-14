@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/ico" href="images/favicon.ico">
-  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="icon" type="image/ico" href="<%=require('./images/favicon.ico')%>">
   <title>Mesto</title>
 </head>
 <body class="root">
   <header class="header">
-    <img class="header__logo" src="./images/logo__header.svg" alt="Логотип">
+    <img class="header__logo" src="<%=require('./images/logo__header.svg')%>" alt="Логотип">
   </header>
 
   <main class="content">
     <section class="profile">
       <div class="profile__img-box">
-        <img class="profile__avatar" src="./images/avatar.png" alt="Аватар">
+        <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Аватар">
       </div>
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -90,6 +89,5 @@
     </figure>
   </template>
 
-  <script src="./js/pages/index.js" type="module"></script>
 </body>
 </html>

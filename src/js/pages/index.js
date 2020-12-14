@@ -1,4 +1,6 @@
 //Старт: Зона importa
+import '../../pages/index.css'
+
 import {
   initialCards,
   btnOpenPopupProfile,
