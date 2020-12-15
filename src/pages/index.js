@@ -1,18 +1,18 @@
 //Старт: Зона importa
-import '../../pages/index.css'
+import './index.css'
 
 import {
   initialCards,
   btnOpenPopupProfile,
   btnOpenPopupCard,
   photoCard
-} from  '../utils/constants.js';
-import { Card } from '../components/card.js';
-import { FormValidator } from '../components/FormValidator.js';
-import { Section } from '../components/Section.js';
-import { UserInfo } from '../components/UserInfo.js';
-import { PopupWithForm } from '../components/PopupWithForm.js';
-import { PopupWithImage } from '../components/PopupWithImage.js';
+} from  '../js/utils/constants.js';
+import { Card } from '../js/components/card.js';
+import { FormValidator } from '../js/components/FormValidator.js';
+import { Section } from '../js/components/Section.js';
+import { UserInfo } from '../js/components/UserInfo.js';
+import { PopupWithForm } from '../js/components/PopupWithForm.js';
+import { PopupWithImage } from '../js/components/PopupWithImage.js';
 //Конец: зоны importа
 
 //Старт: cекция создания obj
