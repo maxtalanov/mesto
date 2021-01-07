@@ -11,7 +11,7 @@
   background-color: #000;
   background-image: url(../../../images/add-button__off.svg);
   background-repeat: no-repeat;
-  background-position: center
+  background-position: center;
 }
 
 .profile__add-button:hover {
