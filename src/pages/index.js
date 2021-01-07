@@ -54,24 +54,22 @@ const listCards = new Section({
 }, photoCard);
 
 //Валидатор для форм profile
-const formValidatorProfile = new FormValidator(
-  '.form-profile',
-  '.form__input',
-  '.form__btn-input',
-  'form__btn-input_state_blocked',
-  'form__input_state_invalid',
-  'error'
-);
+const formValidatorProfile = new FormValidator('.form-profile', {
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__btn-input',
+  inactiveButtonClass: 'form__btn-input_state_blocked',
+  inputErrorClass: 'form__input_state_invalid',
+  errorClass: 'error'
+});
 
 //Валидатор для форм card
-const formValidatorCard = new FormValidator(
-  '.form-card',
-  '.form__input',
-  '.form__btn-input',
-  'form__btn-input_state_blocked',
-  'form__input_state_invalid',
-  'error'
-);
+const formValidatorCard = new FormValidator('.form-card', {
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__btn-input',
+  inactiveButtonClass: 'form__btn-input_state_blocked',
+  inputErrorClass: 'form__input_state_invalid',
+  errorClass: 'error'
+});
 
 //Обработчик кнопки открытия PROFAILE
 btnOpenPopupProfile.addEventListener('click', () => {
