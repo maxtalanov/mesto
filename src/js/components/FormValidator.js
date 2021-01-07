@@ -1,28 +1,28 @@
 export class FormValidator {
-  constructor(formSelector, inputSelector, submitButtonSelector,inactiveButtonClass,
-    inputErrorClass, errorClass) {
+  constructor(formSelector, config) {
     this._formSelector = formSelector;
-    this._inputSelector = inputSelector;
-    this._submitButtonSelector = submitButtonSelector;
-    this._inactiveButtonClass = inactiveButtonClass;
-    this._inputErrorClass = inputErrorClass;
-    this._errorClass = errorClass;
+
+    this._inputSelector = config.inputSelector;
+    this._submitButtonSelector = config.submitButtonSelector;
+    this._inactiveButtonClass = config.inactiveButtonClass;
+    this._inputErrorClass = config.inputErrorClass;
+    this._errorClass = config.errorClass;
   }
 
-// Показать ошибку
+  // Показать ошибку
   _showError(formElements, input) {
-  // console.log('false: работает');
-  const errorElement = formElements.querySelector(`#${input.id}-${this._errorClass}`);
-  errorElement.textContent = input.validationMessage;
-  input.classList.add(this._inputErrorClass);
+    // console.log('false: работает');
+    const errorElement = formElements.querySelector(`#${input.id}-${this._errorClass}`);
+    errorElement.textContent = input.validationMessage;
+    input.classList.add(this._inputErrorClass);
   };
 
-// Убрать ошибку
+  // Убрать ошибку
   _hideError(formElements, input) {
-  // console.log('true: работает')
-  const errorElement = formElements.querySelector(`#${input.id}-${this._errorClass}`);
-  errorElement.textContent = '';
-  input.classList.remove(this._inputErrorClass);
+    // console.log('true: работает')
+    const errorElement = formElements.querySelector(`#${input.id}-${this._errorClass}`);
+    errorElement.textContent = '';
+    input.classList.remove(this._inputErrorClass);
   };
 
   // ф-ия выполняет проврку валидный или нет
@@ -68,18 +68,15 @@ export class FormValidator {
 
   enableValidation() {
     //Получаем массив форм
-    const formElements = Array.from(document.querySelectorAll(this._formSelector));
-    //console.log(formElements); //тест пройден +
+    const formElements = document.querySelector(this._formSelector);
+    // console.log(formElements); //тест пройден +
 
-  //Перебираем массив
-    formElements.forEach((form) => {
-      form.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        //console.log('oN'); //тест не пройден -
-      });
-
-      // console.log(form);
-      this._setEventListener(form);
+    formElements.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      // console.log('SABMIT -> OK'); //тест не пройден -
     });
+
+    // console.log(form);
+    this._setEventListener(formElements);
   };
-};
+}
