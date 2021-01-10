@@ -10,37 +10,37 @@ export class FormValidator {
   }
 
   // Показать ошибку
-  _showError(formElements, input) {
+  _showError(formElement, input) {
     // console.log('false: работает');
-    const errorElement = formElements.querySelector(`#${input.id}-${this._errorClass}`);
+    const errorElement = formElement.querySelector(`#${input.id}-${this._errorClass}`);
     errorElement.textContent = input.validationMessage;
     input.classList.add(this._inputErrorClass);
   };
 
   // Убрать ошибку
-  _hideError(formElements, input) {
+  _hideError(formElement, input) {
     // console.log('true: работает')
-    const errorElement = formElements.querySelector(`#${input.id}-${this._errorClass}`);
+    const errorElement = formElement.querySelector(`#${input.id}-${this._errorClass}`);
     errorElement.textContent = '';
     input.classList.remove(this._inputErrorClass);
   };
 
   // ф-ия выполняет проврку валидный или нет
 // Если убирем  ошибку/...
-  _checkInputValidity(formElements, input) {
+  _checkInputValidity(formElement, input) {
     //console.log('Чек валидити =>')
     if (input.checkValidity()) {
       //console.log("true")
-      this._hideError(formElements, input, this._inputErrorClass, this._errorClass);
+      this._hideError(formElement, input, this._inputErrorClass, this._errorClass);
     } else {
       //console.log("false")
-      this._showError(formElements, input, this._inputErrorClass, this._errorClass);
+      this._showError(formElement, input, this._inputErrorClass, this._errorClass);
     }
   };
 
   // Блокировка не валидной кнопки
-  _toggleBtnState(formElements, btnElement) {
-    if (formElements.checkValidity()) {
+  _toggleBtnState(formElement, btnElement) {
+    if (formElement.checkValidity()) {
       btnElement.classList.remove(this._inactiveButtonClass);
       btnElement.disabled = false;
     } else {
@@ -49,34 +49,34 @@ export class FormValidator {
     }
   };
 
-  _setEventListener(formElements) {
-    const inputElement = Array.from(formElements.querySelectorAll(this._inputSelector));
-    const btnElement = formElements.querySelector(this._submitButtonSelector);
+  _setEventListener(formElement) {
+    const inputElement = Array.from(formElement.querySelectorAll(this._inputSelector));
+    const btnElement = formElement.querySelector(this._submitButtonSelector);
     //console.log(inputElement);
     //console.log(btnElement);
 
     inputElement.forEach((input) => {
-      this._toggleBtnState(formElements, btnElement);
+      this._toggleBtnState(formElement, btnElement);
 
       input.addEventListener('input', (evt) => {
         // console.log('oN_oN');
-        this._checkInputValidity(formElements, evt.target);
-        this._toggleBtnState(formElements, btnElement);
+        this._checkInputValidity(formElement, evt.target);
+        this._toggleBtnState(formElement, btnElement);
       });
     });
   };
 
   enableValidation() {
     //Получаем массив форм
-    const formElements = document.querySelector(this._formSelector);
-    // console.log(formElements); //тест пройден +
+    const formElement = document.querySelector(this._formSelector);
+    // console.log(formElement); //тест пройден +
 
-    formElements.addEventListener('submit', (evt) => {
+    formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
       // console.log('SABMIT -> OK'); //тест не пройден -
     });
 
     // console.log(form);
-    this._setEventListener(formElements);
+    this._setEventListener(formElement);
   };
 }
