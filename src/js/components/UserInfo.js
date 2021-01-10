@@ -1,7 +1,7 @@
 export class UserInfo {
-  constructor(_nameElement,  _statusElement) {
-    this._nameElement = document.querySelector(_nameElement);
-    this. _statusElement = document.querySelector( _statusElement);
+  constructor(nameSelector,  statusSelector) {
+    this._nameElement = document.querySelector(nameSelector);
+    this. _statusElement = document.querySelector(statusSelector);
 
     this.nameProfile = document.querySelector('.profile__name');
     this.statusProfile = document.querySelector('.profile__status');
