@@ -75,6 +75,7 @@ const formValidatorCard = new FormValidator('.form-card', {
 btnOpenPopupProfile.addEventListener('click', () => {
   popupProfile.open();
   userInfo.getUserInfo();
+  console.log(userInfo.getUserInfo());
 });
 
 //Обработчик кнопки открытия CARD
