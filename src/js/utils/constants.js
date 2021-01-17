@@ -52,6 +52,7 @@ export const formProfile = document.querySelector('.form-profile');
 export const formName = formProfile.querySelector('.form__name');
 export const formStatus = formProfile.querySelector('.form__status');
 
+
 // Форма для card
 export const formCard = document.querySelector('.form-card');
 export const inputName = formCard.querySelector('.form__in-name');
@@ -65,3 +66,6 @@ export const status = document.querySelector('.profile__status');
 export const templateCard = document.querySelector('.template-card');
 export const photoCard = document.querySelector('.photo-card');
 
+//Переменные для класса UserInfo
+export const nameEditProfile = document.querySelector('.profile__name');
+export const statusEditProfile = document.querySelector('.profile__status');

@@ -4,6 +4,8 @@ import './index.css'
 import {
   initialCards,
   btnOpenPopupProfile,
+  nameEditProfile,
+  statusEditProfile,
   btnOpenPopupCard,
   photoCard
 } from  '../js/utils/constants.js';
@@ -15,15 +17,15 @@ import { PopupWithForm } from '../js/components/PopupWithForm.js';
 import { PopupWithImage } from '../js/components/PopupWithImage.js';
 //Конец: зоны importа
 
-//Старт: cекция создания obj
 
-//Рефреш данных
-const userInfo = new UserInfo('.form__name', '.form__status');
+// const userInfo = new UserInfo('.form__name', '.form__status');
+const userInfo = new UserInfo(nameEditProfile, statusEditProfile);
 
 const popupImage = new PopupWithImage('.popup_type_img');
 
-const popupProfile = new PopupWithForm('.popup_type_profile', (data) => {
-  userInfo.setUserInfo(data);
+const popupProfile = new PopupWithForm('.popup_type_profile', () => {
+  userInfo.setUserInfo(nameInput.value, statusInput.value);
+  userInfo.updateUserinfo();
 });
 
 const popupCard = new PopupWithForm('.popup_type_card', (data) => {
@@ -75,7 +77,6 @@ const formValidatorCard = new FormValidator('.form-card', {
 btnOpenPopupProfile.addEventListener('click', () => {
   popupProfile.open();
   userInfo.getUserInfo();
-  console.log(userInfo.getUserInfo());
 });
 
 //Обработчик кнопки открытия CARD

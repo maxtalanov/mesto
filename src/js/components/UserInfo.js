@@ -1,7 +1,7 @@
 export class UserInfo {
   constructor(nameSelector,  statusSelector) {
-    this._name = document.querySelector(nameSelector);
-    this. _status = document.querySelector(statusSelector);
+    this._name = nameSelector;
+    this. _status = statusSelector;
 
     this.nameProfile = document.querySelector('.profile__name');
     this.statusProfile = document.querySelector('.profile__status');
@@ -9,24 +9,21 @@ export class UserInfo {
 
   //метод возврат obj с данными пользовотеля (публичный)
   getUserInfo() {
-    // this._nameElement.value = this.nameProfile.textContent;
-    // console.log(this._name.textContent);
-    // // this. _statusElement.value = this.statusProfile.textContent;
-
-    // console.log(this.nameProfile.textContent)
     return {
-      name: this.nameProfile.textContent,
-      status: this.statusProfile.textContent,
+      name: this._name,
+      status: this._status,
     };
-
   }
 
   //метод new данные пользовотеля + добавление их на страницу (публичный)
-  setUserInfo(name, status) {
-    // this.nameProfile.textContent = this._nameElement.value;
-    // this.statusProfile.textContent = this. _statusElement.value;
+  setUserInfo(newName, newStatus) {
+    this._name = newName;
+    this._status = newStatus;
+  }
 
-    this._name.textContent = name;
-    this._status.textContent = status;
+  //Метод
+  updateUserInfo() {
+    this._nameElem.textContent = this._name;
+    this._statusElem.textContent = this._status
   }
 }
