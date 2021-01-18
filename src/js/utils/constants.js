@@ -52,15 +52,14 @@ export const formProfile = document.querySelector('.form-profile');
 export const formName = formProfile.querySelector('.form__name');
 export const formStatus = formProfile.querySelector('.form__status');
 
-
 // Форма для card
 export const formCard = document.querySelector('.form-card');
 export const inputName = formCard.querySelector('.form__in-name');
 export const inputLink = formCard.querySelector('.form__in-link');
 
 //Данные для формы
-export const name = document.querySelector('.profile__name');
-export const status = document.querySelector('.profile__status');
+export const nameInput = document.querySelector('.form__name');
+export const statusInput = document.querySelector('.form__status');
 
 // Шаблон карточек
 export const templateCard = document.querySelector('.template-card');

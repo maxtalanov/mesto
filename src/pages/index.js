@@ -7,7 +7,9 @@ import {
   nameEditProfile,
   statusEditProfile,
   btnOpenPopupCard,
-  photoCard
+  photoCard,
+  nameInput,
+  statusInput
 } from  '../js/utils/constants.js';
 import { Card } from '../js/components/card.js';
 import { FormValidator } from '../js/components/FormValidator.js';
@@ -83,6 +85,10 @@ btnOpenPopupProfile.addEventListener('click', () => {
 btnOpenPopupCard.addEventListener('click', () => {
   popupCard.open();
 });
+
+// Устанавливаем по умоланию при загрузке странице
+userInfo.setUserInfo('Жак-Ив Кусто','Исследователь океана');
+userInfo.updateUserInfo();
 
 //Обработчика запускающиеся при загрузке страницы
 listCards.renderer();

@@ -1,10 +1,10 @@
 export class UserInfo {
   constructor(nameSelector,  statusSelector) {
-    this._name = nameSelector;
-    this. _status = statusSelector;
+    this._nameElement = nameSelector;
+    this. _statusElement = statusSelector;
 
-    this.nameProfile = document.querySelector('.profile__name');
-    this.statusProfile = document.querySelector('.profile__status');
+    this._name = '';
+    this._status = '';
   }
 
   //метод возврат obj с данными пользовотеля (публичный)
@@ -23,7 +23,7 @@ export class UserInfo {
 
   //Метод
   updateUserInfo() {
-    this._nameElem.textContent = this._name;
-    this._statusElem.textContent = this._status
+    this._nameElement.textContent = this._name;
+    this._statusElement.textContent = this._status
   }
 }
