@@ -25,9 +25,11 @@ const userInfo = new UserInfo(nameEditProfile, statusEditProfile);
 
 const popupImage = new PopupWithImage('.popup_type_img');
 
-const popupProfile = new PopupWithForm('.popup_type_profile', () => {
+const popupProfile = new PopupWithForm('.popup_type_profile', (data) => {
   userInfo.setUserInfo(nameInput.value, statusInput.value);
-  userInfo.updateUserinfo();
+  console.log(nameInput.value, statusInput.value);
+  userInfo.updateUserinfo(data);
+  console.log(userInfo.updateUserInfo());
 });
 
 const popupCard = new PopupWithForm('.popup_type_card', (data) => {
