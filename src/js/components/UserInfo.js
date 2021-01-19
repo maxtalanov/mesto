@@ -25,8 +25,5 @@ export class UserInfo {
   updateUserInfo() {
     this._nameElement.textContent = this._name;
     this._statusElement.textContent = this._status
-
-    console.log(this._name);
-    console.log(this._status);
   }
 }

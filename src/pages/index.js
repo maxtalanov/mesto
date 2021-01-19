@@ -83,7 +83,6 @@ btnOpenPopupProfile.addEventListener('click', () => {
   const data = userInfo.getUserInfo();
   nameInput.value = data.name;
   statusInput.value = data.status;
-  console.log(data);
 });
 
 //Обработчик кнопки открытия CARD
