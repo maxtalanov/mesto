@@ -25,10 +25,10 @@ const userInfo = new UserInfo(nameEditProfile, statusEditProfile);
 
 const popupImage = new PopupWithImage('.popup_type_img');
 
-const popupProfile = new PopupWithForm('.popup_type_profile', (data) => {
+const popupProfile = new PopupWithForm('.popup_type_profile', () => {
   userInfo.setUserInfo(nameInput.value, statusInput.value);
   console.log(nameInput.value, statusInput.value);
-  userInfo.updateUserinfo(data);
+  userInfo.updateUserInfo();
   console.log(userInfo.updateUserInfo());
 });
 
@@ -80,7 +80,10 @@ const formValidatorCard = new FormValidator('.form-card', {
 //Обработчик кнопки открытия PROFAILE
 btnOpenPopupProfile.addEventListener('click', () => {
   popupProfile.open();
-  userInfo.getUserInfo();
+  const data = userInfo.getUserInfo();
+  nameInput.value = data.name;
+  statusInput.value = data.status;
+  console.log(data);
 });
 
 //Обработчик кнопки открытия CARD
