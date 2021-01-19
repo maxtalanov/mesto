@@ -4,8 +4,12 @@ import './index.css'
 import {
   initialCards,
   btnOpenPopupProfile,
+  nameEditProfile,
+  statusEditProfile,
   btnOpenPopupCard,
-  photoCard
+  photoCard,
+  nameInput,
+  statusInput
 } from  '../js/utils/constants.js';
 import { Card } from '../js/components/card.js';
 import { FormValidator } from '../js/components/FormValidator.js';
@@ -15,15 +19,17 @@ import { PopupWithForm } from '../js/components/PopupWithForm.js';
 import { PopupWithImage } from '../js/components/PopupWithImage.js';
 //Конец: зоны importа
 
-//Старт: cекция создания obj
 
-//Рефреш данных
-const userInfo = new UserInfo('.form__name', '.form__status');
+// const userInfo = new UserInfo('.form__name', '.form__status');
+const userInfo = new UserInfo(nameEditProfile, statusEditProfile);
 
 const popupImage = new PopupWithImage('.popup_type_img');
 
-const popupProfile = new PopupWithForm('.popup_type_profile', (data) => {
-  userInfo.setUserInfo(data);
+const popupProfile = new PopupWithForm('.popup_type_profile', () => {
+  userInfo.setUserInfo(nameInput.value, statusInput.value);
+  console.log(nameInput.value, statusInput.value);
+  userInfo.updateUserInfo();
+  console.log(userInfo.updateUserInfo());
 });
 
 const popupCard = new PopupWithForm('.popup_type_card', (data) => {
@@ -74,13 +80,19 @@ const formValidatorCard = new FormValidator('.form-card', {
 //Обработчик кнопки открытия PROFAILE
 btnOpenPopupProfile.addEventListener('click', () => {
   popupProfile.open();
-  userInfo.getUserInfo();
+  const data = userInfo.getUserInfo();
+  nameInput.value = data.name;
+  statusInput.value = data.status;
 });
 
 //Обработчик кнопки открытия CARD
 btnOpenPopupCard.addEventListener('click', () => {
   popupCard.open();
 });
+
+// Устанавливаем по умоланию при загрузке странице
+userInfo.setUserInfo('Жак-Ив Кусто','Исследователь океана');
+userInfo.updateUserInfo();
 
 //Обработчика запускающиеся при загрузке страницы
 listCards.renderer();
