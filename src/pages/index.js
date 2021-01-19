@@ -27,9 +27,7 @@ const popupImage = new PopupWithImage('.popup_type_img');
 
 const popupProfile = new PopupWithForm('.popup_type_profile', () => {
   userInfo.setUserInfo(nameInput.value, statusInput.value);
-  console.log(nameInput.value, statusInput.value);
   userInfo.updateUserInfo();
-  console.log(userInfo.updateUserInfo());
 });
 
 const popupCard = new PopupWithForm('.popup_type_card', (data) => {
