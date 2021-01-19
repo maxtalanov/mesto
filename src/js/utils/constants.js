@@ -58,10 +58,13 @@ export const inputName = formCard.querySelector('.form__in-name');
 export const inputLink = formCard.querySelector('.form__in-link');
 
 //Данные для формы
-export const name = document.querySelector('.profile__name');
-export const status = document.querySelector('.profile__status');
+export const nameInput = document.querySelector('.form__name');
+export const statusInput = document.querySelector('.form__status');
 
 // Шаблон карточек
 export const templateCard = document.querySelector('.template-card');
 export const photoCard = document.querySelector('.photo-card');
 
+//Переменные для класса UserInfo
+export const nameEditProfile = document.querySelector('.profile__name');
+export const statusEditProfile = document.querySelector('.profile__status');
