@@ -17,10 +17,10 @@ import { Section } from '../js/components/Section.js';
 import { UserInfo } from '../js/components/UserInfo.js';
 import { PopupWithForm } from '../js/components/PopupWithForm.js';
 import { PopupWithImage } from '../js/components/PopupWithImage.js';
+
+import {token, groupID} from '../js/utils/ServerConect.js'; 
 //Конец: зоны importа
 
-
-// const userInfo = new UserInfo('.form__name', '.form__status');
 const userInfo = new UserInfo(nameEditProfile, statusEditProfile);
 
 const popupImage = new PopupWithImage('.popup_type_img');
