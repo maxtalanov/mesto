@@ -68,3 +68,5 @@ export const photoCard = document.querySelector('.photo-card');
 //Переменные для класса UserInfo
 export const nameEditProfile = document.querySelector('.profile__name');
 export const statusEditProfile = document.querySelector('.profile__status');
+
+export const avatarProfile = document.querySelector('.profile__avatar');

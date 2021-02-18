@@ -3,17 +3,15 @@
 //Конец: Зоны importа
 
 export class Section {
-  constructor({inItems, renderer}, containerSelector) {
-    this._inItems = inItems; //это массив данных
+  constructor({renderer}, containerSelector) {
     this._renderer = renderer; // это функция
-
     this._container = containerSelector; //контейнер куда добавить
   }
 
   // метод отрисовки элемента (публичный)
-  renderer() {
-    this._inItems.forEach(elItem => {
-      this._renderer(elItem);
+renderer(cards) {
+    cards.forEach(elItem => {
+      return this._renderer(elItem);
     });
   }
 
