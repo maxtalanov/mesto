@@ -11,7 +11,7 @@ export class UserInfo {
   getUserInfo() {
     return {
       name: this._name,
-      status: this._status,
+      about: this._status,
     };
   }
 
@@ -21,7 +21,7 @@ export class UserInfo {
     this._status = newStatus;
   }
 
-  //Метод
+  //Метод апдейт данных (публичный)
   updateUserInfo() {
     this._nameElement.textContent = this._name;
     this._statusElement.textContent = this._status

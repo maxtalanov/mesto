@@ -37,11 +37,11 @@
     <form class="form form-profile" action="#" name="profile">
       <h2 class="form__title">Редактировать профиль</h2>
       <fieldset class="form__set form__profile">
-        <input class="form__input form__name" id="profile-name" type="text" name="profile-name" placeholder="Введите ваше имя и/или фамилию"
+        <input class="form__input form__name" id="profile-name" type="text" name="name" placeholder="Введите ваше имя и/или фамилию"
         minlength="2" maxlength="40" autocomplete="off"  required>
         <span class="form__error-span" id="profile-name-error"></span>
 
-        <input class="form__input form__status" id="profile-status" type="text" name="profile-status" placeholder="Введите ваш статус"
+        <input class="form__input form__status" id="profile-status" type="text" name="about" placeholder="Введите ваш статус"
         minlength="2" maxlength="200" autocomplete="off" required>
         <span class="form__error-span" id="profile-status-error"></span>
       </fieldset>
@@ -54,11 +54,11 @@
     <form class="form form-card" action="#" name="card">
       <h2 class="form__title">Новое место</h2>
       <fieldset class="form__set">
-        <input class="form__input form__in-name" id="card-name" type="text" name="card-name" placeholder="Название"
+        <input class="form__input form__in-name" id="card-name" type="text" name="name" placeholder="Название"
         minlength="2" maxlength="30" autocomplete="off" required>
         <span class="form__error-span" id="card-name-error"></span>
 
-        <input class="form__input form__in-link" id="card-link" type="url" name="card-link" placeholder="Ссылка на картинку"
+        <input class="form__input form__in-link" id="card-link" type="url" name="link" placeholder="Ссылка на картинку"
         required>
         <span class="form__error-span" id="card-link-error"></span>
       </fieldset>
@@ -84,7 +84,10 @@
       <figcaption class="card__bottom">
         <div class="card__text">
           <p class="card__title"></p>
-          <button class="card__btn-like hover-opacity" type="button"></button>
+          <div class="card__like-box">
+            <button class="card__btn-like hover-opacity" type="button"></button>
+            <p class="card__like-text">1</p>
+          </div>
         </div>
       </figcaption>
     </figure>

@@ -3,83 +3,90 @@ export class Api {
     this._url = config.baseUrl;
     this._headers = config.headers;
 
+    this._groupID = 'cohort-20';
     console.log(this._headers);
-}
+  }
+
+  //0. Метод: Отвечает за работу синхронной выгрузки информации
+  getAllInfo() {
+
+  }
 
   //1. Мето получения информации о пользователе
   getInfoUser() {
-    return fetch(`${this._url}users/me`, {
+    return fetch(`${this._url}/${this._groupID}/users/me`, {
       method: "GET",
       headers: this._headers
     })
 
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}.`);
-    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}.`);
+      })
   }
 
   //2. Метод получения масива карточек
   getIntalCards() {
-    return fetch(`${this._url}cards`, {
+    return fetch(`${this._url}/${this._groupID}/cards`, {
       method: "GET",
       headers: this._headers
     })
 
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
-    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}.`);
+      })
   }
 
   //3. Метод редактирования профиля
-  editYourProfile() {
-    return fetch(`${this._url}users/me`, {
+  editYourProfile(editDataUser) {
+    return fetch(`${this._url}/${this._groupID}/users/me`, {
       method: "PATCH",
-      headers: this._headers
-      //тут еще body # ВНИМАНИЕ! #
+      headers: this._headers,
+      body: JSON.stringify(editDataUser)
     })
 
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
-    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}.`);
+      })
   }
 
   //4. Метод добавления новой карточки
-  addNewCard() {
-    return fetch(`${this._url}cards`, {
+  addNewCard(data) {
+    return fetch(`${this._url}/${this._groupID}/cards`, {
       method: "POST",
-      headers: this._headers
+      headers: this._headers,
+      body: JSON.stringify(data)
     })
 
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
-    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
+      })
   }
 
   //5. Метод удаления карточки
   removeCard() {
-    return fetch(`${this._url}cards/cardId`, { //тут НАДО ПОПРАВИТЬ БУДЕТ ССЫЛКУ
+    return fetch(`${this._url}/${this._groupID}/cards/cardId`, { //тут НАДО ПОПРАВИТЬ БУДЕТ ССЫЛКУ
       method: "DELETE",
       headers: this._headers
     })
 
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
-    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
+      })
   }
 
   //6. Метод Сняти и постановки лайка
@@ -89,16 +96,16 @@ export class Api {
 
   //7. Метод Изменения аватара
   updateAvatar() {
-    return fetch(`${this._url}users/me/avatar`, {
+    return fetch(`${this._url}/${this._groupID}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers
     })
 
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
-    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
+      })
   }
 }

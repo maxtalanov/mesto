@@ -41,8 +41,10 @@
 @import url(../blocks/card/__bottom/card__bottom.css);
 @import url(../blocks/card/__text/card__text.css);
 @import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__like-box/card__like-box.css);
 @import url(../blocks/card/__btn-like/card__btn-like.css);
 @import url(../blocks/card/__btn-like/__btn-like_active/card__btn-like_active.css);
+@import url(../blocks/card/__like-text/card__like-text.css);
 /* Конец: секция PHOTO-CARD */
 
 

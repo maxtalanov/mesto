@@ -18,6 +18,11 @@ export class PopupWithForm extends Popup {
     super.close();
   }
 
+  //метод
+  _saveDataInput() {
+
+  }
+
   //метод сбора информации с форм (приватный)
   _getInputValues() {
     this.inputValue = {};
