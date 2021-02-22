@@ -44,18 +44,22 @@ export class Api {
 
   //3. Метод редактирования профиля
   editYourProfile(editDataUser) {
+    console.log(editDataUser);
     return fetch(`${this._url}/${this._groupID}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(editDataUser)
+      body: JSON.stringify({
+        name: editDataUser.name,
+        about: editDataUser.about
+      })
     })
 
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}.`);
-      })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}.`);
+    })
   }
 
   //4. Метод добавления новой карточки
@@ -95,17 +99,21 @@ export class Api {
   }
 
   //7. Метод Изменения аватара
-  updateAvatar() {
+  upAvatar(editDataUser) {
+    console.log(editDataUser), 'api 7';
     return fetch(`${this._url}/${this._groupID}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: editDataUser.avatar})
     })
 
       .then(res => {
         if (res.ok) {
           return res.json();
         }
-        return Promise.reject(`Ошибка: ${res.status}. Сервер не доступен.`);
+        return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}.`);
       })
   }
 }
+

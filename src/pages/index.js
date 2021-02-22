@@ -2,11 +2,12 @@
 import './index.css'
 
 import {
-  initialCards,
   btnOpenPopupProfile,
+  btnOpenPopupDelete,
+  btnOpenPopupCard,
+  btnOpenPopupAvatar,
   nameEditProfile,
   statusEditProfile,
-  btnOpenPopupCard,
   photoCard,
   nameInput,
   statusInput,
@@ -19,6 +20,7 @@ import { UserInfo } from '../js/components/UserInfo.js';
 import { PopupWithForm } from '../js/components/PopupWithForm.js';
 import { PopupWithImage } from '../js/components/PopupWithImage.js';
 import { Api } from '../js/components/API.js';
+import { Popup } from '../js/components/Popup';
 
 //Конец: зоны importа
 
@@ -34,17 +36,17 @@ import { Api } from '../js/components/API.js';
   });
 
   //
-const userInfo = new UserInfo(nameEditProfile, statusEditProfile);
+const userInfo = new UserInfo(nameEditProfile, statusEditProfile, avatarProfile);
 
   //
 const popupImage = new PopupWithImage('.popup_type_img');
 
   //
 const popupProfile = new PopupWithForm('.popup_type_profile', (editDataUser) => {
-  console.log(editDataUser, 'Экземпляр класса');
+  console.log(editDataUser, 'Экземпляр класса имя и статус');
   api.editYourProfile(editDataUser)
     .then((editDataUser) => {
-      userInfo.setUserInfo(editDataUser.name, editDataUser.about);
+      userInfo.setUserInfo(editDataUser.name, editDataUser.about, editDataUser.avatar);
       userInfo.updateUserInfo();
     })
   .catch((err) => {
@@ -52,6 +54,21 @@ const popupProfile = new PopupWithForm('.popup_type_profile', (editDataUser) => 
     console.log(`Проверьте причину в справочнике по адресу
     https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
   });
+});
+
+const popupEditAvatar = new PopupWithForm('.popup_type_avatar', (editDataUser) => {
+  console.log(editDataUser, 'Экземпляр класс аватар')
+  api
+    .upAvatar(editDataUser)
+    .then((editDataUser) => {
+      userInfo.setUserInfo(editDataUser.name, editDataUser.about, editDataUser.avatar);
+      userInfo.updateUserInfo();
+    })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+      console.log(`Проверьте причину в справочнике по адресу
+      https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
+    });
 });
 
 const popupCard = new PopupWithForm('.popup_type_card', (data) => {
@@ -77,8 +94,9 @@ const popupCard = new PopupWithForm('.popup_type_card', (data) => {
   //Сборка карточек при запуску страницы
 const listCards = new Section({
   renderer: (data) => {
+    // console.log(data);
     const card = new Card
-      (data.name, data.link, '.template-card', () => {
+      (data, '.template-card', () => {
         const text = data.name;
         const link = data.link;
         popupImage.open(link, text);
@@ -97,9 +115,15 @@ const formValidatorProfile = new FormValidator('.form-profile', {
   inputErrorClass: 'form__input_state_invalid',
   errorClass: 'error'
 });
-
   //Валидатор для форм card
 const formValidatorCard = new FormValidator('.form-card', {
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__btn-input',
+  inactiveButtonClass: 'form__btn-input_state_blocked',
+  inputErrorClass: 'form__input_state_invalid',
+  errorClass: 'error'
+});
+const formValidatorAvatar = new FormValidator('.form-avatar', {
   inputSelector: '.form__input',
   submitButtonSelector: '.form__btn-input',
   inactiveButtonClass: 'form__btn-input_state_blocked',
@@ -115,9 +139,8 @@ api
   .getInfoUser()
   .then((dataUserInfo) => {
     console.log(dataUserInfo);
-    userInfo.setUserInfo(dataUserInfo.name, dataUserInfo.about);
+    userInfo.setUserInfo(dataUserInfo.name, dataUserInfo.about,  dataUserInfo.avatar);
     userInfo.updateUserInfo();
-    avatarProfile.src = dataUserInfo.avatar;
   })
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
@@ -138,19 +161,6 @@ api
     https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
   });
 
-//   //Обработчик: Запись данных пользователя на сервер
-// api
-//   .editYourProfile()
-//   .then((textValue) => {
-//     console.log(textValue);
-//   })
-//   .catch((err) => {
-//     console.log(err); // выведем ошибку в консоль
-//     console.log(`Проверьте причину в справочнике по адресу
-//     https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
-//   });
-
-
   //Обработчик кнопки открытия PROFAILE
 btnOpenPopupProfile.addEventListener('click', () => {
   popupProfile.open();
@@ -164,12 +174,22 @@ btnOpenPopupCard.addEventListener('click', () => {
   popupCard.open();
 });
 
+// btnOpenPopupDelete.addEventListener('click', () => {});
+
+btnOpenPopupAvatar.addEventListener('click', () => {
+  popupEditAvatar.open();
+
+});
+
 //Обработчика запускающиеся при загрузке страницы
 popupProfile.setEventListeners();
 popupCard.setEventListeners();
+popupEditAvatar.setEventListeners();
 popupImage.setEventListeners();
+
 formValidatorProfile.enableValidation();
 formValidatorCard.enableValidation();
+formValidatorAvatar.enableValidation();
 
 
 //Зона теста

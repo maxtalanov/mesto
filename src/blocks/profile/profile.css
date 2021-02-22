@@ -1,4 +1,5 @@
 .profile {
+  position: relative;
   display: grid;
   max-width: 100%;
   grid-template-columns: 120px minmax(min-content, 1fr) 150px;

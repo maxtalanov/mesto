@@ -13,10 +13,10 @@
 
   <main class="content">
     <section class="profile">
-      <div class="profile__img-box">
+      <a class="profile__img-box">
         <!-- <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Аватар"> -->
-        <img class="profile__avatar" src="" alt="Аватар"> <!-- Выгрузка с сервера -->
-      </div>
+        <img class="profile__avatar profile__btn-avtar-edit" src="" alt="Аватар"> <!-- Выгрузка с сервера -->
+      </a>
       <div class="profile__info">
         <h1 class="profile__name"></h1>
         <button class="profile__edit-button hover-opacity" type="button"></button>
@@ -67,6 +67,19 @@
     </form>
   </section>
 
+  <section class="popup popup_type_avatar">
+    <form class="form form-avatar" action="#" name="avatar">
+      <h2 class="form__title">Обновить аватар</h2>
+      <fieldset class="form__set">
+        <input class="form__input form__in-link" id="avatar-link" type="url" name="avatar" placeholder="Ссылка на картинку"
+        required>
+        <span class="form__error-span" id="avatar-link-error"></span>
+      </fieldset>
+      <button class="form__btn-exit popup__btn-exit hover-opacity" type="reset"></button>
+      <input class="form__btn-input form__btn-save" type="submit" value="Сохранить">
+    </form>
+  </section>
+
   <section class="popup popup_type_img">
     <figure class="show-img">
       <button class="show-img__btn-exit popup__btn-exit hover-opacity" type="reset"></button>
@@ -75,6 +88,13 @@
         <p class="show-img__text">текс</p>
       </figcaption>
     </figure>
+  </section>
+
+  <!-- popup_opened -->
+  <section class="popup popup_type_delet">
+    <h2 class="popup__title">Вы уверены?</h2>
+    <button class="form__btn-exit popup__btn-exit hover-opacity" type="reset"></button>
+    <input class="form__btn-input form__btn-create" type="submit" value="Да">
   </section>
 
   <template class="template-card">
@@ -86,7 +106,7 @@
           <p class="card__title"></p>
           <div class="card__like-box">
             <button class="card__btn-like hover-opacity" type="button"></button>
-            <p class="card__like-text">1</p>
+            <p class="card__like-text"></p>
           </div>
         </div>
       </figcaption>
