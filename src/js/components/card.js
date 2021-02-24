@@ -3,22 +3,37 @@
 //Конец: Зоны importа
 
 export class Card {
-  constructor(data, templateSelector, handleCardClick) {
-    this._name = data.name;
-    this._link = data.link;
-    this._likeCounter = data.likes;
+  constructor(dataCard, templateSelector, handleCardClick, handleCardRemoveClick, api) {
+    console.log(dataCard, 'new obj card');
 
+    //Данные дата
+    this._myId = dataCard.myId; //Мой идентификатор пользователя
+    this._cardId = dataCard._id; //Идентификатор карточки
+    this.userCardId = dataCard.owner._id; //Владелец карточки
+    this._name = dataCard.name; // Имя карточки
+    this._link = dataCard.link; //Ссылка на ккартинку карточки
+    this._likeCounter = dataCard.likes; //Кол-во лайков
 
-    this._template = document.querySelector(templateSelector).content.querySelector('.card');
+    this._template = document.querySelector(templateSelector).content.querySelector('.card'); //Шаблон разметки карточки
 
-    this._handleCardClick = handleCardClick; // ф-ия
+    this._handleCardClick = handleCardClick; // ф-ия клика по img карточки
+    this._handleRemoveCard = handleCardRemoveClick; //ф-ия клика на делит карточки
+    this._api = api;
   };
 
   //Удаллить карточку
-  _remove () {
+  remove() {
     this._card.remove();
     this._card = null;
   };
+
+
+  //Удалить кнопку с чужих карточек
+  _removeBtnTrashCard() {
+    if (this._myId !== this.userCardId) {
+      this._card.querySelector('.trash').remove();
+    };
+  }
 
   //Лайк карточки
   _like() {
@@ -49,11 +64,16 @@ export class Card {
     this._cardLikeText.textContent = this._likesUsers();
 
     //Обработчики
-    this._cardRemove.addEventListener('click', () => this._remove());
-    this._cardLike.addEventListener('click', () => this._like());
-    this._cardImage.addEventListener('click', () => {this._handleCardClick()});
+    this._setEventListerin();
+    this._removeBtnTrashCard();
 
     return this._card;
   };
+
+  _setEventListerin() {
+    this._cardRemove.addEventListener('click', () => this._handleRemoveCard({cardId: this._cardId}));
+    this._cardLike.addEventListener('click', () => this._like());
+    this._cardImage.addEventListener('click', () => {this._handleCardClick()});
+  }
 
 };

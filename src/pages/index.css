@@ -23,6 +23,7 @@
 
 /* Старт: блок FORM */
 @import url(../blocks/form/form.css);
+@import url(../blocks/form/__delete/form__delete.css); /* Возможное удаление */
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__set/form__set.css);
 @import url(../blocks/form/__input/form__input.css);
@@ -67,6 +68,7 @@
 
 /* Старт: popup */
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/_type_img/popup_type_img.css);
 /* Конец: popup */

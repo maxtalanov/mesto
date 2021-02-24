@@ -10,17 +10,28 @@ export class PopupWithForm extends Popup {
     //Переменные
     this._form = this._popupSelector.querySelector('.form');
     this._inputs = this._form.querySelectorAll('.form__input');
+    this._submitBtnIsLouding = this._popupSelector.querySelector('.form__btn-input');
+    this._submitBtnLoudingOff= this._submitBtnIsLouding.value;
+    // console.log(this._submitBtnLoudingOff, 'p');
+  }
+
+  //
+renderLoading(isLoading) {
+  // console.log(this._submitBtnIsLouding);
+  // console.log(this._submitBtnLoudingOff) ;
+    if (isLoading) {
+      this._submitBtnIsLouding.value = 'Сохранение...';
+        // console.log('Метод ON' + 'Папап формы');
+      } else {
+        this._submitBtnIsLouding.value = this._submitBtnLoudingOff;
+        // console.log('Метод OFF' + 'Папап формы');
+      }
   }
 
  //Метод закрытия (родителя)
   close() {
     this._form.reset();
     super.close();
-  }
-
-  //метод
-  _saveDataInput() {
-
   }
 
   //метод сбора информации с форм (приватный)

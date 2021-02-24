@@ -92,14 +92,16 @@
 
   <!-- popup_opened -->
   <section class="popup popup_type_delet">
-    <h2 class="popup__title">Вы уверены?</h2>
-    <button class="form__btn-exit popup__btn-exit hover-opacity" type="reset"></button>
-    <input class="form__btn-input form__btn-create" type="submit" value="Да">
+    <div class="form form-delete">
+      <h2 class="form__title popup__title">Вы уверены?</h2>
+      <button class="form__btn-exit popup__btn-exit hover-opacity" type="reset"></button>
+      <input class="form__btn-input form__btn-create" type="submit" value="Да">
+    </div>
   </section>
 
   <template class="template-card">
     <figure class="card">
-      <button class="trash hover-opacity"></button>
+      <button class="trash hover-opacity"></button> <!-- Вот элемент в ДОМ <HTML:5></HTML:5> -->
       <img class="card__img" src="#" alt="#">
       <figcaption class="card__bottom">
         <div class="card__text">
