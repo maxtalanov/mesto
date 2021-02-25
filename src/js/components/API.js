@@ -81,7 +81,8 @@ export class Api {
 
   //5. Метод удаления карточки
   removeCard(id) {
-    return fetch(`${this._url}/${this._groupID}/cards/cardId`, { //тут НАДО ПОПРАВИТЬ БУДЕТ ССЫЛКУ
+    console.log(id)
+    return fetch(`${this._url}/${this._groupID}/cards/${id}`, { //тут НАДО ПОПРАВИТЬ БУДЕТ ССЫЛКУ
       method: "DELETE",
       headers: this._headers
     })
@@ -94,23 +95,23 @@ export class Api {
       })
   }
 
-  //6. Метод: Постановки лайка
+  //6. Метод: Постановка лайка
   addLike(id) {
-    console.log('api 6');
+    console.log(`api 6 => Передача ID:${id} лайка на сервер`);
     return fetch(`${this._url}/${this._groupID}/cards/likes/${id}`, {
       method: "PUT",
       headers: this._headers
     })
   }
 
-  //7.Метод: Cнятия лайка
-removeLike(id) {
-  console.log('api 6');
-  return fetch(`${this._url}/${this._groupID}/cards/likes/${id}`, {
-    method: "DELETE",
-    headers: this._headers
-  })
-}
+  //7. Метод: Cнятие лайка
+  removeLike(id) {
+    console.log('api 6');
+    return fetch(`${this._url}/${this._groupID}/cards/likes/${id}`, {
+      method: "DELETE",
+      headers: this._headers
+    })
+  }
 
   //8. Метод Изменения аватара
   upAvatar(editDataUser) {

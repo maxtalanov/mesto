@@ -85,8 +85,8 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar', (editDataUser) =
 
     api
       .removeCard(removeCard.cardId)
-      .then((removeCard) => {
-        removeCard.card.remove();
+      .then(() => {
+        card.remove();
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -105,7 +105,7 @@ const popupCard = new PopupWithForm('.popup_type_card', (data) => {
   popupCard.renderLoading(true);
   api.addNewCard(data)
     .then((data) => {
-      const addCard = new Card(data, '.template-card', (data) => {
+      const addCard = new Card(...data, '.template-card', (data) => {
 
         const name = data.name;
         const link = data.link
@@ -135,6 +135,7 @@ const listCards = new Section({
       {...dataCard, myId: myId},
       '.template-card',
       (dataCard) => {
+        console.log(dataCard)
         const text = dataCard.name;
         const link = dataCard.link;
         popupImage.open(link, text);
@@ -226,7 +227,7 @@ btnOpenPopupCard.addEventListener('click', () => {
   popupCard.open();
 });
 
-  //Обработчики запускающиеся при загрузке страницы
+  //Обработчики запускающeeся при загрузке страницы
 popupProfile.setEventListeners();
 popupCard.setEventListeners();
 popupEditAvatar.setEventListeners();

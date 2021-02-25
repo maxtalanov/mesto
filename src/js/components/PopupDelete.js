@@ -1,5 +1,4 @@
 //Старт: Зона importa
-import { btnOpenPopupAvatar } from '../utils/constants.js';
 import { Popup } from './Popup.js';
 //Конец: зоны importа
 
@@ -8,8 +7,7 @@ export class PopupDelete extends Popup {
     super(popupSelector); //Передаем наследника
     this._handlerDeleteClick = handlerDeleteClick; //функция
 
-    this.btnSubmit = this._popupSelector.querySelector('.form__btn-input');
-    console.log(this.btnSubmit);
+    this.btnYes = this._popupSelector.querySelector('.form__btn-input');
   }
 
   open(removeCard) {
@@ -19,10 +17,10 @@ export class PopupDelete extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this.btnSubmit.addEventListener('submit', (evt) => {
-      evt.preventDefault();
+    this.btnYes.addEventListener('click', () => {
       this._handlerDeleteClick(this._cardId);
+      super.close();
     });
-    this.close();
+
   }
 }
