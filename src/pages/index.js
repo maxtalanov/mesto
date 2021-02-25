@@ -24,7 +24,6 @@ import { PopupWithImage } from '../js/components/PopupWithImage.js';
 import { Api } from '../js/components/API.js';
 //Конец: зоны importа
 
-//*** new ЭКЗЕМПЛЯРЫ КЛАССОВ ***
   //Работа с сервером
   const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1',
@@ -85,8 +84,9 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar', (editDataUser) =
 
     api
       .removeCard(removeCard.cardId)
-      .then(() => {
-        card.remove();
+      .then((deleteCardId) => {
+        cardElement.remove(deleteCardId); // так не работает
+        //Описываю логику экземпляра класса
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -100,19 +100,29 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar', (editDataUser) =
 
   //Экземпляр класса popupCard ребенок PopupWithForm
 const popupCard = new PopupWithForm('.popup_type_card', (data) => {
-  // console.log(data, "popupCard");
+  console.log(data, "popupCard");
 
   popupCard.renderLoading(true);
   api.addNewCard(data)
     .then((data) => {
-      const addCard = new Card(...data, '.template-card', (data) => {
+      console.log(`Ответ сервера: ${data}. Начинаем рендрить карточку из полученных данных.`);
+      console.log(data);
 
-        const name = data.name;
-        const link = data.link
+      const addCard = new Card(
+        {...data, myId: myId},
+        '.template-card',
+        (data) => {
+          console.log(data);
+          const name = data.name;
+          const link = data.link
 
-        popupImage.open(link, name);
-      });
-
+          popupImage.open(link, name);
+        },
+        (removeCard) => {
+          popupDelete.open(removeCard);
+        },
+        api
+      ); //Параметры класс
       const cardElement = addCard.render();
       listCards.addNewItem(cardElement);
     })
@@ -134,15 +144,15 @@ const listCards = new Section({
     const card = new Card(
       {...dataCard, myId: myId},
       '.template-card',
-      (dataCard) => {
+      {handleCardClick: (dataCard) => {
         console.log(dataCard)
         const text = dataCard.name;
         const link = dataCard.link;
         popupImage.open(link, text);
-      },
-      (removeCard) => {
+      }},
+      {handleCardRemoveClick: (removeCard) => {
         popupDelete.open(removeCard);
-      },
+      }},
       api
     );
 

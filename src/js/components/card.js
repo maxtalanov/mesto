@@ -3,7 +3,7 @@
 //Конец: Зоны importа
 
 export class Card {
-  constructor(dataCard, templateSelector, handleCardClick, handleCardRemoveClick, api) {
+  constructor(dataCard, templateSelector, {handleCardClick}, {handleCardRemoveClick}, api) {
     //Данные дата
     this._myId = dataCard.myId; //Мой идентификатор пользователя
     this._cardId = dataCard._id; //Идентификатор карточки
@@ -11,7 +11,7 @@ export class Card {
     this._name = dataCard.name; // Имя карточки
     this._link = dataCard.link; //Ссылка на ккартинку карточки
     this._likeCounter = dataCard.likes; //Массив лайкнувших
-    console.log(this._likeCounter);
+    // console.log(this._likeCounter);
 
     this._template = document.querySelector(templateSelector).content.querySelector('.card'); //Шаблон разметки карточки
 
@@ -44,7 +44,8 @@ export class Card {
   }
 
   _likePut(idlike) {
-      console.log(`Карточка с этим id:${idlike.id} перешла в этап постановки лайка и передачи данных на сервер`);
+    console.log(`Карточка с этим id:${idlike.id} перешла в этап постановки лайка и передачи данных на сервер`);
+
     this._api
       .addLike(idlike.id)
       .then((res) => {
