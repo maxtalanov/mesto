@@ -34,9 +34,18 @@ export class Card {
     };
   }
 
+  test(myId) {
+      console.log(myId);
+      // console.log(this._likeCounter);
+      return Boolean(this._likeCounter.find(likes => likes.id == myId));
+    }
+
   _likeIdentify(idlike){
-      console.log(`Карточка с этим id:${idlike.id} проходит этап выбора. Поставить или снять лайк`);
-    if(this._likeCounter.find(likes =>likes.id == this._myId)) {
+
+      console.log(idlike);
+      console.log(this.test(this.myId));
+
+    if(this.test(this.myId)) {
       this._likeDelete(idlike);
     } else {
       this._likePut(idlike);
@@ -73,13 +82,10 @@ export class Card {
       });
   }
 
-  test() {
-    this._test = this._likeCounter.find(likes => likes.id == this._myId);
-    console.log(this._test);
-  }
+
 
   _likeDefault() {
-    if (this._likeCounter.find(likes => likes.id == this._myId)) {
+    if (this.test(this.myId)) {
       this._card
         .querySelector('.card__btn-like')
         .classList

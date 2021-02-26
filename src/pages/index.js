@@ -81,7 +81,6 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar', (editDataUser) =
 
   // //Экземпляр класса popupDelete ребенок PopupDelete
   const popupDelete = new PopupDelete('.popup_type_delet', (removeCard) => {
-
     api
       .removeCard(removeCard.cardId)
       .then((deleteCardId) => {
@@ -111,16 +110,16 @@ const popupCard = new PopupWithForm('.popup_type_card', (data) => {
       const addCard = new Card(
         {...data, myId: myId},
         '.template-card',
-        (data) => {
+        {handleCardClick: (data) => {
           console.log(data);
           const name = data.name;
           const link = data.link
 
           popupImage.open(link, name);
-        },
-        (removeCard) => {
+        }},
+        {handleCardRemoveClick: (removeCard) => {
           popupDelete.open(removeCard);
-        },
+        }},
         api
       ); //Параметры класс
       const cardElement = addCard.render();
