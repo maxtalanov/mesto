@@ -1,9 +1,5 @@
-//Старт: Зона importa
-
-//Конец: Зоны importа
-
 export class Card {
-  constructor(dataCard, templateSelector, {handleCardClick}, {handleCardRemoveClick}, api) {
+  constructor({dataCard, templateSelector, handleCardClick, handleCardRemoveClick}, api) {
     //Данные дата
     this._myId = dataCard.myId; //Мой идентификатор пользователя
     this._cardId = dataCard._id; //Идентификатор карточки
@@ -20,44 +16,65 @@ export class Card {
     this._api = api;
   };
 
-  //Удаллить карточку
+  //1. Метод: Удаллить карточку
   remove() {
     this._card.remove();
     this._card = null;
   };
 
 
-  //Удалить кнопку с чужих карточек
+  //2. Метод: Улаления кнопки корзины на чужих карточках
   _removeBtnTrashCard() {
     if (this._myId !== this.userCardId) {
       this._card.querySelector('.trash').remove();
     };
-  }
+  };
 
-  test(myId) {
-      console.log(myId);
-      // console.log(this._likeCounter);
-      return Boolean(this._likeCounter.find(likes => likes.id == myId));
+  //3. Метод: Перебор массива лайков и определения, есть ли мой
+  isLiked() {
+      return Boolean(this._likeCounter.find(likes =>
+        likes._id == this._myId
+      ));
     }
 
+  //4. Метод: Проверки действия для лайка
   _likeIdentify(idlike){
-
-      console.log(idlike);
-      console.log(this.test(this.myId));
-
-    if(this.test(this.myId)) {
+    if(this.isLiked()) {
       this._likeDelete(idlike);
     } else {
       this._likePut(idlike);
     }
   }
 
+  //5. Метод: Отправка лайка на сервер
   _likePut(idlike) {
-    console.log(`Карточка с этим id:${idlike.id} перешла в этап постановки лайка и передачи данных на сервер`);
-
+    // console.log(`Карточка с этим id:${idlike.id} перешла в этап постановки лайка и передачи данных на сервер`);
     this._api
       .addLike(idlike.id)
       .then((res) => {
+        console.log(res);
+        this._likeCounter = res.likes;
+        this._updateLike();
+        console.log(this._likeCounter);
+        console.log(`Сервер ответил:`, res);
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+        console.log(`Проверьте причину в справочнике по адресу
+        https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
+      });
+  }
+
+  //6. Метод: Удаления лайка с сервера.
+  _likeDelete(idlike) {
+      // console.log(`Карточка с этим id:${idlike.id} перешла в этап снятия лайка и передачи данных на сервер`);
+      this._api
+      .removeLike(idlike.id)
+      .then((res) => {
+        console.log(res);
+        this._likeCounter = res.likes;
+        this._updateLike();
+        console.log(this._likeCounter);
         console.log(`Сервер ответил: ${res}`);
       })
       .catch((err) => {
@@ -67,47 +84,24 @@ export class Card {
       });
   }
 
-  _likeDelete(idlike) {
-      console.log(`Карточка с этим id:${idlike.id} перешла в этап снятия лайка и передачи данных на сервер`);
-      this._api
-      .removeLike(idlike.id)
-      .then((res) => {
-        this._like(res)
-        console.log(`Сервер ответил: ${res}`, res);
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-        console.log(`Проверьте причину в справочнике по адресу
-        https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
-      });
-  }
+  //7. Метод: Обновления лайка
+  _updateLike() {
+    // debugger
+    this._cardLikeText.textContent = this._likeCounter.length;
 
-
-
-  _likeDefault() {
-    if (this.test(this.myId)) {
-      this._card
-        .querySelector('.card__btn-like')
+    if (this.isLiked()) {
+      this._cardLike
         .classList
         .add('card__btn-like_active');
-    }
-    this._card
-      .querySelector('.card__btn-like')
+    }else{
+      this._cardLike
       .classList
       .remove('card__btn-like_active');
-  }
-  //Лайк карточки
-  _like() {
-    this._cardLike.classList.toggle('card__btn-like_active');
+    }
 
-  };
-
-  //Лайк пользователей
-  _likesUsers() {
-    return this._likeCounter.length
   }
 
-  // Рендер карточек
+  //8. Метод: Рендер карточек
   render() {
     //клонирование котейнера
     this._card = this._template.cloneNode(true);
@@ -124,20 +118,20 @@ export class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardText.textContent = this._name;
-    this._cardLikeText.textContent = this._likesUsers();
+
 
     //Обработчики
     this._setEventListerin();
     this._removeBtnTrashCard();
-    this._likeDefault();
+    this._updateLike();
 
     return this._card;
   };
 
-
+  //9. Метод: Групировки обработчиков
   _setEventListerin() {
     this._cardRemove.addEventListener('click', () => this._handleRemoveCard({cardId: this._cardId}));
-    this._cardLike.addEventListener('click', /* () => this._like(), */ () => this._likeIdentify({id: this._cardId}));
+    this._cardLike.addEventListener('click', () => this._likeIdentify({id: this._cardId}));
     this._cardImage.addEventListener('click', () => this._handleCardClick({name: this._name, link: this._link}));
   }
 

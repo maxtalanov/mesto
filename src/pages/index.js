@@ -11,7 +11,7 @@ import {
   nameInput,
   statusInput,
   avatarProfile,
-} from  '../js/utils/constants.js';
+} from '../js/utils/constants.js';
 
 import { Card } from '../js/components/card.js';
 import { FormValidator } from '../js/components/FormValidator.js';
@@ -24,23 +24,57 @@ import { PopupWithImage } from '../js/components/PopupWithImage.js';
 import { Api } from '../js/components/API.js';
 //Конец: зоны importа
 
-  //Работа с сервером
-  const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1',
-    headers: {
-      authorization: '812904d9-0b6e-4749-b7a8-56c99ef1e2b9',
-      'Content-Type': 'application/json'
+//Переменная с пользователем
+let myId = null;
+
+function createCard(dataCard) {
+
+  const card = new Card({
+    dataCard: { ...dataCard, myId: myId },
+    templateSelector: '.template-card',
+    handleCardClick: (data) => {
+
+      const name = data.name;
+      const link = data.link
+
+      popupImage.open(link, name)
+    },
+    handleCardRemoveClick: (removeCard) => {
+      popupDelete.open();
+      popupDelete.setSubmitAction(() => {
+        api
+          .removeCard(removeCard.cardId)
+          .then((deleteCardId) => {
+            card.remove(deleteCardId);
+          })
+          .catch((err) => {
+            console.log(err); // выведем ошибку в консоль
+            console.log(`Проверьте причину в справочнике по адресу
+              https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
+          });
+      })
     }
-  });
+  }, api)
 
-  let myId = null;
+  return card.render();
+};
 
-  //Экземпляр класса UserInfo ребенок UserInfo
+
+//Работа с сервером
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1',
+  headers: {
+    authorization: '812904d9-0b6e-4749-b7a8-56c99ef1e2b9',
+    'Content-Type': 'application/json'
+  }
+});
+
+//Экземпляр класса UserInfo ребенок UserInfo
 const userInfo = new UserInfo(nameEditProfile, statusEditProfile, avatarProfile);
 
-  //Экземпляр класса popupProfile ребенок PopupWithImage
+//Экземпляр класса popupProfile ребенок PopupWithImage
 const popupProfile = new PopupWithForm('.popup_type_profile', (editDataUser) => {
-  console.log(editDataUser, 'Экземпляр класса имя и статус');
+  // console.log(editDataUser, 'Экземпляр класса имя и статус');
 
   popupProfile.renderLoading(true);
   api.editYourProfile(editDataUser)
@@ -48,19 +82,19 @@ const popupProfile = new PopupWithForm('.popup_type_profile', (editDataUser) => 
       userInfo.setUserInfo(editDataUser.name, editDataUser.about, editDataUser.avatar);
       userInfo.updateUserInfo();
     })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-    console.log(`Проверьте причину в справочнике по адресу
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+      console.log(`Проверьте причину в справочнике по адресу
     https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
-  })
-  .finally(() => {
-    popupProfile.renderLoading(false);
-  });
+    })
+    .finally(() => {
+      popupProfile.renderLoading(false);
+    });
 });
 
-  //Экземпляр класса popupEditAvatar ребенок PopupWithForm
+//Экземпляр класса popupEditAvatar ребенок PopupWithForm
 const popupEditAvatar = new PopupWithForm('.popup_type_avatar', (editDataUser) => {
-  console.log(editDataUser, 'Экземпляр класс аватар')
+  // console.log(editDataUser, 'Экземпляр класс аватар')
 
   popupEditAvatar.renderLoading(true);
   api
@@ -79,51 +113,22 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar', (editDataUser) =
     });
 });
 
-  // //Экземпляр класса popupDelete ребенок PopupDelete
-  const popupDelete = new PopupDelete('.popup_type_delet', (removeCard) => {
-    api
-      .removeCard(removeCard.cardId)
-      .then((deleteCardId) => {
-        cardElement.remove(deleteCardId); // так не работает
-        //Описываю логику экземпляра класса
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-        console.log(`Проверьте причину в справочнике по адресу
-        https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
-      });
-  });
+// //Экземпляр класса popupDelete ребенок PopupDelete
+const popupDelete = new PopupDelete('.popup_type_delet');
 
-    //Экземпляр класса popupImage ребенок PopupWithImage
-  const popupImage = new PopupWithImage('.popup_type_img');
+//Экземпляр класса popupImage ребенок PopupWithImage
+const popupImage = new PopupWithImage('.popup_type_img');
 
-  //Экземпляр класса popupCard ребенок PopupWithForm
+//Экземпляр класса popupCard ребенок PopupWithForm
 const popupCard = new PopupWithForm('.popup_type_card', (data) => {
-  console.log(data, "popupCard");
+  // console.log(data, "popupCard");
 
   popupCard.renderLoading(true);
   api.addNewCard(data)
     .then((data) => {
-      console.log(`Ответ сервера: ${data}. Начинаем рендрить карточку из полученных данных.`);
-      console.log(data);
-
-      const addCard = new Card(
-        {...data, myId: myId},
-        '.template-card',
-        {handleCardClick: (data) => {
-          console.log(data);
-          const name = data.name;
-          const link = data.link
-
-          popupImage.open(link, name);
-        }},
-        {handleCardRemoveClick: (removeCard) => {
-          popupDelete.open(removeCard);
-        }},
-        api
-      ); //Параметры класс
-      const cardElement = addCard.render();
-      listCards.addNewItem(cardElement);
+      // console.log(`Ответ сервера: ${data}. Начинаем рендрить карточку из полученных данных.`);
+      // console.log(data);
+      listCards.addNewItem(createCard(data));
     })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
@@ -135,33 +140,16 @@ const popupCard = new PopupWithForm('.popup_type_card', (data) => {
     });
 });
 
-  //Экземпляр класса listCards ребенок Section
+//Экземпляр класса listCards ребенок Section
 const listCards = new Section({
   renderer: (dataCard) => {
-    // console.log(dataCard, ":Данные карточки");
+    // console.log(dataCard);
 
-    const card = new Card(
-      {...dataCard, myId: myId},
-      '.template-card',
-      {handleCardClick: (dataCard) => {
-        console.log(dataCard)
-        const text = dataCard.name;
-        const link = dataCard.link;
-        popupImage.open(link, text);
-      }},
-      {handleCardRemoveClick: (removeCard) => {
-        popupDelete.open(removeCard);
-      }},
-      api
-    );
-
-    const cardElement = card.render();
-
-    listCards.addItem(cardElement);
+    listCards.addItem(createCard(dataCard));
   }
 }, photoCard);
 
-  //Валидатор#1 для форм PROFILE
+//Валидатор#1 для форм PROFILE
 const formValidatorProfile = new FormValidator('.form-profile', {
   inputSelector: '.form__input',
   submitButtonSelector: '.form__btn-input',
@@ -169,7 +157,7 @@ const formValidatorProfile = new FormValidator('.form-profile', {
   inputErrorClass: 'form__input_state_invalid',
   errorClass: 'error'
 });
-  //Валидатор#2 для форм CARD
+//Валидатор#2 для форм CARD
 const formValidatorCard = new FormValidator('.form-card', {
   inputSelector: '.form__input',
   submitButtonSelector: '.form__btn-input',
@@ -177,7 +165,7 @@ const formValidatorCard = new FormValidator('.form-card', {
   inputErrorClass: 'form__input_state_invalid',
   errorClass: 'error'
 });
-  //Валидатор#3 для форм AVATAR
+//Валидатор#3 для форм AVATAR
 const formValidatorAvatar = new FormValidator('.form-avatar', {
   inputSelector: '.form__input',
   submitButtonSelector: '.form__btn-input',
@@ -188,27 +176,11 @@ const formValidatorAvatar = new FormValidator('.form-avatar', {
 
 
 //*** ОБРАБОТЧИКИ ***
-
-  //Обработчик: выгрузки информации о пользователе
-api
-  .getInfoUser()
-  .then((dataUserInfo) => {
-    // console.log(dataUserInfo, 'Полученые данные пользователя');
-
+api.getAllInfo()
+  .then(([dataUserInfo, cards]) => {
     myId = dataUserInfo._id;
-    userInfo.setUserInfo(dataUserInfo.name, dataUserInfo.about,  dataUserInfo.avatar);
+    userInfo.setUserInfo(dataUserInfo.name, dataUserInfo.about, dataUserInfo.avatar);
     userInfo.updateUserInfo();
-  })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-    console.log(`Проверьте причину в справочнике по адресу
-    https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
-  });
-
-  //Обработчик: выгрузка масива карточек
-api
-  .getIntalCards()
-  .then((cards) => {
     listCards.renderer(cards); //прокидываю в метод render
   })
   .catch((err) => {
@@ -217,13 +189,12 @@ api
     https://yandex.ru/support/webmaster/error-dictionary/http-codes.html`) //Даем информацию как проверить причину ошибки
   });
 
+//Обработчик: Открития попап AVATAR
+btnOpenPopupAvatar.addEventListener('click', () => {
+  popupEditAvatar.open();
+});
 
-  //Обработчик: Открития попап AVATAR
-  btnOpenPopupAvatar.addEventListener('click', () => {
-    popupEditAvatar.open();
-  });
-
-  //Обработчик: открытия попап PROFAILE
+//Обработчик: открытия попап PROFAILE
 btnOpenPopupProfile.addEventListener('click', () => {
   popupProfile.open();
   const data = userInfo.getUserInfo();
@@ -231,19 +202,19 @@ btnOpenPopupProfile.addEventListener('click', () => {
   statusInput.value = data.about;
 });
 
-  //Обработчик: Открития попап CARD
+//Обработчик: Открития попап CARD
 btnOpenPopupCard.addEventListener('click', () => {
   popupCard.open();
 });
 
-  //Обработчики запускающeeся при загрузке страницы
+//Обработчики запускающeeся при загрузке страницы
 popupProfile.setEventListeners();
 popupCard.setEventListeners();
 popupEditAvatar.setEventListeners();
 popupImage.setEventListeners();
 popupDelete.setEventListeners();
 
-  //Обработчики: Валидации форм - 1.profile, 1.card, 1.avatar
+//Обработчики: Валидации форм - 1.profile, 1.card, 1.avatar
 formValidatorProfile.enableValidation();
 formValidatorCard.enableValidation();
 formValidatorAvatar.enableValidation();

@@ -1,7 +1,3 @@
-//Старт: Зона importa
-
-//Конец: Зоны importа
-
 export class Section {
   constructor({renderer}, containerSelector) {
     this._renderer = renderer; // это функция
