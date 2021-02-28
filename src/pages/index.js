@@ -2,6 +2,7 @@
 import './index.css'
 
 import {
+  configValidator,
   btnOpenPopupProfile,
   btnOpenPopupCard,
   btnOpenPopupAvatar,
@@ -13,7 +14,7 @@ import {
   avatarProfile,
 } from '../js/utils/constants.js';
 
-import { Card } from '../js/components/card.js';
+import { Card } from '../js/components/Card.js';
 import { FormValidator } from '../js/components/FormValidator.js';
 import { Section } from '../js/components/Section.js';
 import { UserInfo } from '../js/components/UserInfo.js';
@@ -150,29 +151,11 @@ const listCards = new Section({
 }, photoCard);
 
 //Валидатор#1 для форм PROFILE
-const formValidatorProfile = new FormValidator('.form-profile', {
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__btn-input',
-  inactiveButtonClass: 'form__btn-input_state_blocked',
-  inputErrorClass: 'form__input_state_invalid',
-  errorClass: 'error'
-});
+const formValidatorProfile = new FormValidator('.form-profile', configValidator);
 //Валидатор#2 для форм CARD
-const formValidatorCard = new FormValidator('.form-card', {
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__btn-input',
-  inactiveButtonClass: 'form__btn-input_state_blocked',
-  inputErrorClass: 'form__input_state_invalid',
-  errorClass: 'error'
-});
+const formValidatorCard = new FormValidator('.form-card', configValidator);
 //Валидатор#3 для форм AVATAR
-const formValidatorAvatar = new FormValidator('.form-avatar', {
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__btn-input',
-  inactiveButtonClass: 'form__btn-input_state_blocked',
-  inputErrorClass: 'form__input_state_invalid',
-  errorClass: 'error'
-});
+const formValidatorAvatar = new FormValidator('.form-avatar', configValidator);
 
 
 //*** ОБРАБОТЧИКИ ***

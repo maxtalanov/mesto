@@ -1,3 +1,11 @@
+export const configValidator = {
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__btn-input',
+  inactiveButtonClass: 'form__btn-input_state_blocked',
+  inputErrorClass: 'form__input_state_invalid',
+  errorClass: 'error'
+};
+
 export const root = document.querySelector('.root');
 
 // Кнопки и модальное окно
