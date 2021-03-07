@@ -55,6 +55,14 @@ export class FormValidator {
     //console.log(inputElement);
     //console.log(btnElement);
 
+    formElement.addEventListener('reset', () => {
+      inputElement.forEach((input) => {
+        this._hideError(formElement, input);
+        this._toggleBtnState(formElement, btnElement);
+      })
+    });
+
+
     inputElement.forEach((input) => {
       this._toggleBtnState(formElement, btnElement);
 
@@ -64,6 +72,7 @@ export class FormValidator {
         this._toggleBtnState(formElement, btnElement);
       });
     });
+
   };
 
   enableValidation() {
